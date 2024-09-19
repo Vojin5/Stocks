@@ -1,0 +1,52 @@
+﻿
+
+.orders-container
+{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+}
+
+.buyOrders-container
+{
+    width:45%;
+    height:fit-content;
+    border:2px solid gray;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+}
+
+.sellOrders-container {
+    width:45%;
+    height:fit-content;
+    border: 2px solid gray;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-info-container
+{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+}
+
+.order
+{
+    display:flex;
+    flex-direction:column;
+    border-bottom:2px solid gray;
+    margin-top:20px;    
+}
+
+.small-font
+{
+    font-size: 26px;
+}
+
+.margin-t5
+{
+    margin-top:5px;
+}

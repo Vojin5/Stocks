@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/StyleSheet.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Orders.css" asp-append-version="true"/>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg
+        ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="page-content">
+        <div class="header-container">
+            <div>
+                <i class="fa-solid fa-money-bill-trend-up big-font"></i> <span class="header-font"><b>Stocks</b></span>
+            </div>
+            <div class="right-header">
+                <input type="text" name="Search" class="search-input" placeholder="Search Stocks" />
+                <i class="fa-solid fa-gear"></i>
+                <button class="button blue-back">Login</button>
+            </div>
+        </div>
+        
+        @RenderBody()
+    </div>
+    <script src="~/JavaScript.js"></script>
+    @await RenderSectionAsync("validationScripts",false)
+</body>
+</html>
