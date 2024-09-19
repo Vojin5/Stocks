@@ -1,0 +1,11 @@
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\Entities\bin\Debug\net8.0\Entities.deps.json
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\Entities\bin\Debug\net8.0\Entities.dll
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\Entities\bin\Debug\net8.0\Entities.pdb
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\Entities\obj\Debug\net8.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\Entities\obj\Debug\net8.0\Entities.AssemblyInfoInputs.cache
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\Entities\obj\Debug\net8.0\Entities.AssemblyInfo.cs
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\Entities\obj\Debug\net8.0\Entities.csproj.CoreCompileInputs.cache
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\Entities\obj\Debug\net8.0\Entities.dll
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\Entities\obj\Debug\net8.0\refint\Entities.dll
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\Entities\obj\Debug\net8.0\Entities.pdb
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\Entities\obj\Debug\net8.0\ref\Entities.dll

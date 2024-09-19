@@ -1,0 +1,15 @@
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\bin\Debug\net8.0\ServiceContracts.deps.json
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\bin\Debug\net8.0\ServiceContracts.dll
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\bin\Debug\net8.0\ServiceContracts.pdb
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\bin\Debug\net8.0\Entities.dll
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\bin\Debug\net8.0\Entities.pdb
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\ServiceContracts.csproj.AssemblyReference.cache
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\ServiceContracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\ServiceContracts.AssemblyInfoInputs.cache
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\ServiceContracts.AssemblyInfo.cs
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\ServiceContracts.csproj.CoreCompileInputs.cache
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\ServiceC.04662A29.Up2Date
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\ServiceContracts.dll
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\refint\ServiceContracts.dll
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\ServiceContracts.pdb
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\ref\ServiceContracts.dll

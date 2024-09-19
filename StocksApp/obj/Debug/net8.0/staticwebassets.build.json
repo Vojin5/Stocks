@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "h+wJdjW4F9cp9xhFR/QytOc0n+gqXng1KhSewoi5g5A=",
+  "Source": "StocksApp",
+  "BasePath": "_content/StocksApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "StocksApp\\wwwroot",
+      "Source": "StocksApp",
+      "ContentRoot": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\",
+      "BasePath": "_content/StocksApp",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\JavaScript.js",
+      "SourceId": "StocksApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\",
+      "BasePath": "_content/StocksApp",
+      "RelativePath": "JavaScript.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\JavaScript.js"
+    },
+    {
+      "Identity": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Orders.css",
+      "SourceId": "StocksApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\",
+      "BasePath": "_content/StocksApp",
+      "RelativePath": "Orders.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Orders.css"
+    },
+    {
+      "Identity": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\StyleSheet.css",
+      "SourceId": "StocksApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\",
+      "BasePath": "_content/StocksApp",
+      "RelativePath": "StyleSheet.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\StyleSheet.css"
+    }
+  ]
+}

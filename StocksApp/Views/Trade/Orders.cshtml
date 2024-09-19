@@ -1,0 +1,46 @@
+﻿@model OrdersViewModel
+
+@{
+    ViewBag.Title = "Orders";
+}
+
+<div class="navigation-container">
+    <div class="navigation-item"><a asp-controller="trade" asp-action="index">Trade</a></div>
+    <div class="navigation-item border-botttom"><a asp-controller="trade" asp-action="orders">Orders</a></div>
+</div>
+
+<div class="navigation-container">
+    <label class="dimmGray-text big-font">Stocks</label>
+    <i class="fa-solid fa-play" style="color:gray;"></i>
+    <label class="dimmGray-text big-font">Orders</label>
+</div>
+
+<div class="orders-container">
+    <div class="buyOrders-container">
+        <label class="dimmGray-text medium-font">Buy Orders</label>
+        <div class="order-info-container">
+            @foreach(BuyOrderResponse buyOrder in Model.BuyOrders)
+            {
+                <div class="order">
+                    <label class="medium-font"><b>@buyOrder.StockName (@buyOrder.StockSymbol)</b></label>
+                    <label class="small-font"><b>@buyOrder.Quantity</b> <span class="dimmGray-text">shares at</span> <b>$@buyOrder.Price</b> </label>
+                    <label class="small-font margin-t5"><span class="dimmGray-text">Trade Amount: </span><b>$@buyOrder.TradeAmount</b></label>
+                    <label class="dimmGray-text">@buyOrder.DateAndTimeOfOrder.ToString()</label>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="sellOrders-container">
+        <label class="dimmGray-text medium-font">Buy Orders</label>
+        @foreach (SellOrderResponse sellOrder in Model.SellOrders)
+        {
+            <div class="order">
+                <label class="medium-font"><b>@sellOrder.StockName (@sellOrder.StockSymbol)</b></label>
+                <label class="small-font"><b>@sellOrder.Quantity</b> <span class="dimmGray-text">shares at</span> <b>$@sellOrder.Price</b> </label>
+                <label class="small-font margin-t5"><span class="dimmGray-text">Trade Amount: </span><b>$@sellOrder.TradeAmount</b></label>
+                <label class="dimmGray-text">@sellOrder.DateAndTimeOfOrder.ToString()</label>
+            </div>
+        }
+    </div>
+</div>
