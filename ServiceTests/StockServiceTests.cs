@@ -22,7 +22,7 @@ namespace ServiceTests
 
         //When you supply BuyOrderRequest as null, it should throw ArgumentNullException.
         [Fact]
-        public async void CreateBuyOrder_NullAsRequest()
+        public async Task CreateBuyOrder_NullAsRequest()
         {
             BuyOrderRequest? request = null;
             await Assert.ThrowsAsync<ArgumentNullException>(async () =>
@@ -34,7 +34,7 @@ namespace ServiceTests
         //When you supply buyOrderQuantity as 0 (as per the specification, minimum is 1),
         //it should throw ArgumentException.
         [Fact]
-        public async void CreateBuyOrder_QuantityAsZero()
+        public async Task CreateBuyOrder_QuantityAsZero()
         {
             BuyOrderRequest request = new BuyOrderRequest()
             {
@@ -53,7 +53,7 @@ namespace ServiceTests
         //When you supply buyOrderQuantity as 100001
         //(as per the specification, maximum is 100000), it should throw ArgumentException.
         [Fact]
-        public async void CreateBuyOrder_QuantityOverflow()
+        public async Task CreateBuyOrder_QuantityOverflow()
         {
             BuyOrderRequest request = new BuyOrderRequest()
             {
@@ -72,7 +72,7 @@ namespace ServiceTests
         //When you supply buyOrderPrice as 0
         //(as per the specification, minimum is 1), it should throw ArgumentException.
         [Fact]
-        public async void CreateBuyOrder_PriceAsZero()
+        public async Task CreateBuyOrder_PriceAsZero()
         {
             BuyOrderRequest request = new BuyOrderRequest()
             {
@@ -91,7 +91,7 @@ namespace ServiceTests
         //When you supply buyOrderPrice as 10001
         //(as per the specification, maximum is 10000), it should throw ArgumentException.
         [Fact]
-        public async void CreateBuyOrder_PriceOverflow()
+        public async Task CreateBuyOrder_PriceOverflow()
         {
             BuyOrderRequest request = new BuyOrderRequest()
             {
@@ -110,7 +110,7 @@ namespace ServiceTests
         //When you supply stock symbol=null (as per the specification,
         //stock symbol can't be null), it should throw ArgumentException.
         [Fact]
-        public async void CreateBuyOrder_SymbolAsNull()
+        public async Task CreateBuyOrder_SymbolAsNull()
         {
             BuyOrderRequest request = new BuyOrderRequest()
             {
@@ -130,7 +130,7 @@ namespace ServiceTests
         //- (as per the specification,
         //it should be equal or newer date than 2000-01-01), it should throw ArgumentException.
         [Fact]
-        public async void CreateBuyOrder_WrongDate()
+        public async Task CreateBuyOrder_WrongDate()
         {
             BuyOrderRequest request = new BuyOrderRequest()
             {
@@ -149,7 +149,7 @@ namespace ServiceTests
         //If you supply all valid values, it should be successful and
         //return an object of BuyOrderResponse type with auto-generated BuyOrderID (guid).
         [Fact]
-        public async void CreateBuyOrder_ValidRequest()
+        public async Task CreateBuyOrder_ValidRequest()
         {
             BuyOrderRequest request = new BuyOrderRequest()
             {
@@ -169,7 +169,7 @@ namespace ServiceTests
 
         //When you supply SellOrderRequest as null, it should throw ArgumentNullException.
         [Fact]
-        public async void CreateSellOrder_NullAsRequest()
+        public async Task CreateSellOrder_NullAsRequest()
         {
             SellOrderRequest? request = null;
             await Assert.ThrowsAsync<ArgumentNullException>(async () =>
@@ -181,7 +181,7 @@ namespace ServiceTests
         //When you supply buyOrderQuantity as 0 (as per the specification, minimum is 1),
         //it should throw ArgumentException.
         [Fact]
-        public async void CreateSellOrder_QuantityAsZero()
+        public async Task CreateSellOrder_QuantityAsZero()
         {
             SellOrderRequest request = new SellOrderRequest()
             {
@@ -200,7 +200,7 @@ namespace ServiceTests
         //When you supply SellOrderQuantity as 100001
         //(as per the specification, maximum is 100000), it should throw ArgumentException.
         [Fact]
-        public async void CreateSellOrder_QuantityOverflow()
+        public async Task CreateSellOrder_QuantityOverflow()
         {
             SellOrderRequest request = new SellOrderRequest()
             {
@@ -219,7 +219,7 @@ namespace ServiceTests
         //When you supply SellOrderPrice as 0
         //(as per the specification, minimum is 1), it should throw ArgumentException.
         [Fact]
-        public async void CreateSellOrder_PriceAsZero()
+        public async Task CreateSellOrder_PriceAsZero()
         {
             SellOrderRequest request = new SellOrderRequest()
             {
@@ -238,7 +238,7 @@ namespace ServiceTests
         //When you supply SellOrderPrice as 10001
         //(as per the specification, maximum is 10000), it should throw ArgumentException.
         [Fact]
-        public async void CreateSellOrder_PriceOverflow()
+        public async Task CreateSellOrder_PriceOverflow()
         {
             SellOrderRequest request = new SellOrderRequest()
             {
@@ -257,7 +257,7 @@ namespace ServiceTests
         //When you supply stock symbol=null (as per the specification,
         //stock symbol can't be null), it should throw ArgumentException.
         [Fact]
-        public async void CreateSellOrder_SymbolAsNull()
+        public async Task CreateSellOrder_SymbolAsNull()
         {
             SellOrderRequest request = new SellOrderRequest()
             {
@@ -277,7 +277,7 @@ namespace ServiceTests
         //- (as per the specification,
         //it should be equal or newer date than 2000-01-01), it should throw ArgumentException.
         [Fact]
-        public async void CreateSellOrder_WrongDate()
+        public async Task CreateSellOrder_WrongDate()
         {
             SellOrderRequest request = new SellOrderRequest()
             {
@@ -296,7 +296,7 @@ namespace ServiceTests
         //If you supply all valid values, it should be successful and
         //return an object of SellOrderResponse type with auto-generated BuyOrderID (guid).
         [Fact]
-        public async void CreateSellOrder_ValidRequest()
+        public async Task CreateSellOrder_ValidRequest()
         {
             SellOrderRequest request = new SellOrderRequest()
             {
@@ -317,7 +317,7 @@ namespace ServiceTests
 
         //When you invoke this method, by default, the returned list should be empty.
         [Fact]
-        public async void GetAllBuyOrders_Default()
+        public async Task GetAllBuyOrders_Default()
         {
             List<BuyOrderResponse> responseList = await _stocksService.GetBuyOrders();
             Assert.Empty(responseList);
@@ -327,7 +327,7 @@ namespace ServiceTests
         //and then invoke GetAllBuyOrders() method; the returned list should
         //contain all the same buy orders.
         [Fact]
-        public async void GetAllBuyOrders_FewOrders()
+        public async Task GetAllBuyOrders_FewOrders()
         {
             BuyOrderRequest request1 = new BuyOrderRequest()
             {
@@ -368,7 +368,7 @@ namespace ServiceTests
 
         //When you invoke this method, by default, the returned list should be empty.
         [Fact]
-        public async void GetAllSellOrders_Default()
+        public async Task GetAllSellOrders_Default()
         {
             List<SellOrderResponse> responseList = await _stocksService.GetSellOrders();
             Assert.Empty(responseList);
@@ -378,7 +378,7 @@ namespace ServiceTests
         //and then invoke GetAllBuyOrders() method; the returned list should
         //contain all the same buy orders.
         [Fact]
-        public async void GetAllSellOrders_FewOrders()
+        public async Task GetAllSellOrders_FewOrders()
         {
             SellOrderRequest request1 = new SellOrderRequest()
             {

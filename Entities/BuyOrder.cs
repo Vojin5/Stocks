@@ -4,12 +4,15 @@ namespace Entities
 {
     public class BuyOrder
     {
+        [Key]
         public Guid BuyOrderID { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string? StockSymbol { get; set; }
 
         [Required]
+        [StringLength(100)]
         public string? StockName { get; set; }
 
         public DateTime DateAndTimeOfOrder { get; set; }

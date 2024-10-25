@@ -9,6 +9,14 @@
       "PackagePath": "staticwebassets\\Orders.css"
     },
     {
+      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\PDF.css",
+      "PackagePath": "staticwebassets\\PDF.css"
+    },
+    {
+      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Rotativa\\wkhtmltopdf.exe",
+      "PackagePath": "staticwebassets\\Rotativa\\wkhtmltopdf.exe"
+    },
+    {
       "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\StyleSheet.css",
       "PackagePath": "staticwebassets\\StyleSheet.css"
     },

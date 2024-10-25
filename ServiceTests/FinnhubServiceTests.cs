@@ -37,7 +37,7 @@ namespace ServiceTests
 
         //Valid stockSymbol and expect data in return
         [Fact]
-        public async void GetCompanyProfile_ValidSymbol()
+        public async Task GetCompanyProfile_ValidSymbol()
         {
             if (_finnhubService == null)
                 throw new Exception("Finnhub service cannot be initialized");
@@ -48,7 +48,7 @@ namespace ServiceTests
 
         //Invalid StockSymbol provided and expect an InvalidOperationException
         [Fact]
-        public async void GetCompanyProfile_InvalidSymbol()
+        public async Task GetCompanyProfile_InvalidSymbol()
         {
             if (_finnhubService == null)
                 throw new Exception("Finnhub service cannot be initialized");
@@ -68,7 +68,7 @@ namespace ServiceTests
 
         //Valid stockSymbol and expect data in return
         [Fact]
-        public async void GetStockPrice_ValidSymbol()
+        public async Task GetStockPrice_ValidSymbol()
         {
             if (_finnhubService == null)
                 throw new Exception("Finnhub service cannot be initialized");
@@ -79,7 +79,7 @@ namespace ServiceTests
 
         //Invalid StockSymbol provided and expect an InvalidOperationException
         [Fact]
-        public async void GetStockPrice_InvalidSymbol()
+        public async Task GetStockPrice_InvalidSymbol()
         {
             if (_finnhubService == null)
                 throw new Exception("Finnhub service cannot be initialized");

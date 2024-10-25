@@ -1,0 +1,19 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+table{
+    width:100%;
+    text-align:center;
+    margin: 20px 0px;
+}
+
+    table thead {
+        background-color: #BCD5C6;
+    }
+
+    table tbody {
+        background-color: #EFEFEF;
+    }

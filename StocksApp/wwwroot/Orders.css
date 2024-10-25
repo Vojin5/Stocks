@@ -1,5 +1,4 @@
 ﻿
-
 .orders-container
 {
     width:100%;
@@ -10,7 +9,7 @@
 .buyOrders-container
 {
     width:45%;
-    height:fit-content;
+    
     border:2px solid gray;
     padding:20px;
     display:flex;
@@ -19,7 +18,7 @@
 
 .sellOrders-container {
     width:45%;
-    height:fit-content;
+    
     border: 2px solid gray;
     padding: 20px;
     display: flex;

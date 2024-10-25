@@ -3,40 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7BC1668F-4A8C-4C29-9B31-0AB33E01FF7F}|Services\\Services.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\services\\finnhubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7BC1668F-4A8C-4C29-9B31-0AB33E01FF7F}|Services\\Services.csproj|solutionrelative:services\\finnhubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\views\\trade\\orderspdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\views\\trade\\orderspdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{07BA64F5-AABB-4483-8801-C7C187AED06F}|ServiceContracts\\ServiceContracts.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\servicecontracts\\ifinnhubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07BA64F5-AABB-4483-8801-C7C187AED06F}|ServiceContracts\\ServiceContracts.csproj|solutionrelative:servicecontracts\\ifinnhubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\controllers\\tradecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\controllers\\tradecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E0A92A7-AFCA-4F3D-AE82-5BB026C1937F}|Entities\\Entities.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\entities\\viewmodels\\stocktrade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E0A92A7-AFCA-4F3D-AE82-5BB026C1937F}|Entities\\Entities.csproj|solutionrelative:entities\\viewmodels\\stocktrade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\views\\trade\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\views\\trade\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\wwwroot\\pdf.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\wwwroot\\pdf.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\wwwroot\\stylesheet.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\wwwroot\\stylesheet.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7E0A92A7-AFCA-4F3D-AE82-5BB026C1937F}|Entities\\Entities.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\entities\\dto\\buyorderrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7E0A92A7-AFCA-4F3D-AE82-5BB026C1937F}|Entities\\Entities.csproj|solutionrelative:entities\\dto\\buyorderrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\views\\trade\\orders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\views\\trade\\orders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\wwwroot\\orders.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\wwwroot\\orders.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,118 +26,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FinnhubService.cs",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\Services\\FinnhubService.cs",
-              "RelativeDocumentMoniker": "Services\\FinnhubService.cs",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\Services\\FinnhubService.cs",
-              "RelativeToolTip": "Services\\FinnhubService.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAYwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T22:14:24.372Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IFinnhubService.cs",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\ServiceContracts\\IFinnhubService.cs",
-              "RelativeDocumentMoniker": "ServiceContracts\\IFinnhubService.cs",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\ServiceContracts\\IFinnhubService.cs",
-              "RelativeToolTip": "ServiceContracts\\IFinnhubService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T22:14:20.263Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "StyleSheet.css",
               "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\StyleSheet.css",
               "RelativeDocumentMoniker": "StocksApp\\wwwroot\\StyleSheet.css",
               "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\StyleSheet.css",
               "RelativeToolTip": "StocksApp\\wwwroot\\StyleSheet.css",
-              "ViewState": "AQIAAF0AAAAAAAAAAAAwwGwAAAAOAAAA",
+              "ViewState": "AQIAAIMAAAAAAAAAAAAwwI8AAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-08-27T16:21:01.433Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "BuyOrderRequest.cs",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\Entities\\DTO\\BuyOrderRequest.cs",
-              "RelativeDocumentMoniker": "Entities\\DTO\\BuyOrderRequest.cs",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\Entities\\DTO\\BuyOrderRequest.cs",
-              "RelativeToolTip": "Entities\\DTO\\BuyOrderRequest.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAYwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-27T16:14:54.308Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "StockTrade.cs",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\Entities\\ViewModels\\StockTrade.cs",
-              "RelativeDocumentMoniker": "Entities\\ViewModels\\StockTrade.cs",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\Entities\\ViewModels\\StockTrade.cs",
-              "RelativeToolTip": "Entities\\ViewModels\\StockTrade.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAQwAwAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-27T16:10:46.899Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TradeController.cs",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Controllers\\TradeController.cs",
-              "RelativeDocumentMoniker": "StocksApp\\Controllers\\TradeController.cs",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Controllers\\TradeController.cs",
-              "RelativeToolTip": "StocksApp\\Controllers\\TradeController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAGsAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-27T16:08:54.861Z",
+              "WhenOpened": "2024-10-25T16:51:17.444Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Orders.cshtml",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Views\\Trade\\Orders.cshtml",
-              "RelativeDocumentMoniker": "StocksApp\\Views\\Trade\\Orders.cshtml",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Views\\Trade\\Orders.cshtml",
-              "RelativeToolTip": "StocksApp\\Views\\Trade\\Orders.cshtml",
-              "ViewState": "AQIAABkAAAAAAAAAAAAAAAgAAABcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-27T16:07:21.482Z"
+              "DocumentIndex": 3,
+              "Title": "Orders.css",
+              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Orders.css",
+              "RelativeDocumentMoniker": "StocksApp\\wwwroot\\Orders.css",
+              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Orders.css",
+              "RelativeToolTip": "StocksApp\\wwwroot\\Orders.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-10-25T16:51:05.331Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "_ViewImports.cshtml",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Views\\_ViewImports.cshtml",
-              "RelativeDocumentMoniker": "StocksApp\\Views\\_ViewImports.cshtml",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Views\\_ViewImports.cshtml",
-              "RelativeToolTip": "StocksApp\\Views\\_ViewImports.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAA0AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-27T15:58:45.523Z"
+              "DocumentIndex": 1,
+              "Title": "PDF.css",
+              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\PDF.css",
+              "RelativeDocumentMoniker": "StocksApp\\wwwroot\\PDF.css",
+              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\PDF.css",
+              "RelativeToolTip": "StocksApp\\wwwroot\\PDF.css",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-10-25T16:26:45.146Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Views\\Trade\\Index.cshtml",
-              "RelativeDocumentMoniker": "StocksApp\\Views\\Trade\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Views\\Trade\\Index.cshtml",
-              "RelativeToolTip": "StocksApp\\Views\\Trade\\Index.cshtml",
-              "ViewState": "AQIAABoAAAAAAAAAAAAAACcAAABIAAAA",
+              "DocumentIndex": 0,
+              "Title": "OrdersPDF.cshtml",
+              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Views\\Trade\\OrdersPDF.cshtml",
+              "RelativeDocumentMoniker": "StocksApp\\Views\\Trade\\OrdersPDF.cshtml",
+              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Views\\Trade\\OrdersPDF.cshtml",
+              "RelativeToolTip": "StocksApp\\Views\\Trade\\OrdersPDF.cshtml",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAACUAAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-27T15:55:25.495Z"
+              "WhenOpened": "2024-10-25T16:09:55.538Z",
+              "EditorCaption": ""
             }
           ]
         }

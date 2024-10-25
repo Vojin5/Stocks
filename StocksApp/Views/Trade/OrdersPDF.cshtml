@@ -1,0 +1,48 @@
+﻿@model OrdersViewModel
+
+@{
+    Layout = null;    
+}
+<link href="@("http://" + Context.Request.Host.ToString())/PDF.css" rel="stylesheet"/>
+
+<h2>Orders</h2>
+
+<table class="table w-100">
+    <thead>
+        <tr>
+            <th>Date and Time</th>
+            <th>Stock</th>
+            <th>Order Type</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Trade Amount</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(BuyOrderResponse buyOrder in Model.BuyOrders)
+        {
+            <tr>
+                <td>@buyOrder.DateAndTimeOfOrder.ToString()</td>
+                <td>@($"{buyOrder.StockName} ({buyOrder.StockSymbol})")</td>
+                <td>BuyOrder</td>
+                <td>@buyOrder.Quantity</td>
+                <td>@($"$ {buyOrder.Price}")</td>
+                <td>@buyOrder.TradeAmount</td>
+            </tr>
+        }
+
+        @foreach (SellOrderResponse sellOrder in Model.SellOrders)
+        {
+            <tr>
+                <td>@sellOrder.DateAndTimeOfOrder.ToString()</td>
+                <td>@($"{sellOrder.StockName} ({sellOrder.StockSymbol})")</td>
+                <td>SellOrder</td>
+                <td>@sellOrder.Quantity</td>
+                <td>@($"$ {sellOrder.Price}")</td>
+                <td>@sellOrder.TradeAmount</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

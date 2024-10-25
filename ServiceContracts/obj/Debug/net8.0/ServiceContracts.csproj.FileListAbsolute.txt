@@ -13,3 +13,4 @@ C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceCo
 C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\refint\ServiceContracts.dll
 C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\ServiceContracts.pdb
 C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\ref\ServiceContracts.dll
+C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\ServiceContracts\obj\Debug\net8.0\ServiceContracts.sourcelink.json

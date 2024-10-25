@@ -13,6 +13,8 @@
     <label class="dimmGray-text big-font">Stocks</label>
     <i class="fa-solid fa-play" style="color:gray;"></i>
     <label class="dimmGray-text big-font">Orders</label>
+
+    <div class="big-font"><a asp-controller="trade" asp-action="ordersPDF">Download as PDF</a></div>
 </div>
 
 <div class="orders-container">
@@ -32,15 +34,17 @@
     </div>
 
     <div class="sellOrders-container">
-        <label class="dimmGray-text medium-font">Buy Orders</label>
-        @foreach (SellOrderResponse sellOrder in Model.SellOrders)
-        {
-            <div class="order">
-                <label class="medium-font"><b>@sellOrder.StockName (@sellOrder.StockSymbol)</b></label>
-                <label class="small-font"><b>@sellOrder.Quantity</b> <span class="dimmGray-text">shares at</span> <b>$@sellOrder.Price</b> </label>
-                <label class="small-font margin-t5"><span class="dimmGray-text">Trade Amount: </span><b>$@sellOrder.TradeAmount</b></label>
-                <label class="dimmGray-text">@sellOrder.DateAndTimeOfOrder.ToString()</label>
-            </div>
-        }
+        <label class="dimmGray-text medium-font">Sell Orders</label>
+        <div class="order-info-container">
+            @foreach (SellOrderResponse sellOrder in Model.SellOrders)
+            {
+                <div class="order">
+                    <label class="medium-font"><b>@sellOrder.StockName (@sellOrder.StockSymbol)</b></label>
+                    <label class="small-font"><b>@sellOrder.Quantity</b> <span class="dimmGray-text">shares at</span> <b>$@sellOrder.Price</b> </label>
+                    <label class="small-font margin-t5"><span class="dimmGray-text">Trade Amount: </span><b>$@sellOrder.TradeAmount</b></label>
+                    <label class="dimmGray-text">@sellOrder.DateAndTimeOfOrder.ToString()</label>
+                </div>
+            }
+        </div>
     </div>
 </div>
