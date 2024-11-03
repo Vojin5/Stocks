@@ -29,8 +29,7 @@ namespace Entities.CustomValidators
             }
             else
             {
-                return new ValidationResult($"Date of {validationContext.MemberName}" +
-                    $"should be older than {_minDate.Date.ToString()}");
+                return new ValidationResult(string.Format(ErrorMessage ?? "Date of {0} should be older than {1}", validationContext.MemberName, _minDate.Date.ToString()));
             }
             
         }
