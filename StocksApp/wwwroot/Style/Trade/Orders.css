@@ -27,7 +27,6 @@
 
 .order-info-container
 {
-    margin-top:20px;
     display:flex;
     flex-direction:column;
 }
@@ -40,10 +39,6 @@
     margin-top:20px;    
 }
 
-.small-font
-{
-    font-size: 26px;
-}
 
 .margin-t5
 {

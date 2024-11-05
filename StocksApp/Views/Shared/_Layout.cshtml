@@ -4,8 +4,11 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="~/StyleSheet.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Orders.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/Style/Trade/Index.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Style/Layout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Style/Trade/Orders.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/Style/Utilities.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Style/Layout.css" asp-append-version="true" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg
@@ -15,18 +18,40 @@
     <div class="page-content">
         <div class="header-container">
             <div>
-                <i class="fa-solid fa-money-bill-trend-up big-font"></i> <span class="header-font"><b>Stocks</b></span>
+                <i class="fa-solid fa-money-bill-trend-up big-font"></i> 
+                <span class="header-font"><b>Stocks</b></span>
             </div>
-            <div class="right-header">
+            <div class="search-section">
                 <input type="text" name="Search" class="search-input" placeholder="Search Stocks" />
                 <i class="fa-solid fa-gear"></i>
-                <button class="button blue-back">Login</button>
+                <button class="navigation-button royalBlue-back">Login</button>
             </div>
         </div>
+
+        @* <div class="navigation-container">
+            <div class="navigation-item border-botttom">
+                <a asp-controller="trade" asp-action="index">Trade</a>
+            </div>
+            <div class="navigation-item">
+                <a asp-controller="trade" asp-action="orders">Orders</a>
+            </div>
+        </div> *@
+
+        <nav class="navigation-container">
+            <ul class="navigation-items">
+                <li class="navigation-item trade-navigation">
+                    <a asp-controller="trade" asp-action="index">Trade</a>
+                </li>
+                <li class="navigation-item orders-navigation">
+                    <a asp-controller="trade" asp-action="orders">Orders</a>
+                </li>
+            </ul>
+        </nav>
         
         @RenderBody()
     </div>
-    <script src="~/JavaScript.js"></script>
+    <script src="~/JavaScript/StockPriceListener.js"></script>
+    <script src="~/JavaScript/Layout.js" asp-append-version="true"></script>
     @await RenderSectionAsync("validationScripts",false)
 </body>
 </html>

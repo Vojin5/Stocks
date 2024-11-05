@@ -13,7 +13,7 @@ namespace Entities.ViewModels
         public string? StockName { get; set; }
         public double Price { get; set; }
 
-        [Range(1,int.MaxValue)]
-        public int Quantity { get; set; } = 100;
+        [Range(1, int.MaxValue)]
+        public int Quantity { get; set; }
     }
 }

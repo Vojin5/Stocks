@@ -2,15 +2,11 @@
 @{
     ViewBag.Title = "Stocks";
 }
-<div class="navigation-container">
-    <div class="navigation-item border-botttom"><a asp-controller="trade" asp-action="index">Trade</a></div>
-    <div class="navigation-item"><a asp-controller="trade" asp-action="orders">Orders</a></div>
-</div>
 
 <div class="navigation-container">
-    <label class="dimmGray-text big-font">Stocks</label>
+    <div class="dimmGray-text big-font">Stocks</div>
     <i class="fa-solid fa-play" style="color:gray;"></i>
-    <label class="dimmGray-text big-font">@Model.StockName</label>
+    <div class="dimmGray-text big-font">@Model.StockName</div>
 </div>
 
 <form method="post">
@@ -19,28 +15,28 @@
         <div class="stock-card">
 
             <div>
-                <label class="blue-text big-font">@Model.StockName</label>
+                <span class="blue-text big-font">@Model.StockName</span>
                 <input type="hidden" name="StockName" value="@Model.StockName"/>
-                <label class="blue-text big-font" >(@Model.StockSymbol)</label>
+                <span class="blue-text big-font" >(@Model.StockSymbol)</span>
                 <input type="hidden" name="StockSymbol" value="@Model.StockSymbol" />
-            </div>
+            </div> 
 
             <div>
-                <label class="dimmGray-text header-font">$</label>
-                <label class="stockPrice-font" id="StockPrice">@Model.Price</label>
+                <span class="dimmGray-text header-font">$</span>
+                <span class="stockPrice-font" id="StockPrice">@Model.Price</span>
                 <input type="hidden" name="Price" value="@Model.Price" />
             </div>
             <div id="StockSymbol" class="hidden">@Model.StockSymbol</div>
         </div>
 
         <div class="order-container">
-            <label class="big-font dimmGray-text">New Order</label>
+            <span class="big-font dimmGray-text">New Order</span>
             <label asp-for="Quantity" class="medium-font">Quantity</label>
             <input asp-for="Quantity"/>
             <span asp-validation-for="Quantity" class="red-text"></span>
             <div class="buttons-container">
-                <button class="button red-back" asp-controller="trade" asp-action="sellOrder" ><i class="fa-solid fa-arrow-down"></i> Sell</button>
-                <button class="button green-back" asp-controller="trade" asp-action="buyOrder" ><i class="fa-solid fa-arrow-up"></i> Buy</button>
+                <button class="trade-button red-back" asp-controller="trade" asp-action="sellOrder" ><i class="fa-solid fa-arrow-down"></i> Sell</button>
+                <button class="trade-button green-back" asp-controller="trade" asp-action="buyOrder" ><i class="fa-solid fa-arrow-up"></i> Buy</button>
             </div>
         </div>
     </div>
@@ -66,3 +62,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" integrity="sha512-KFHXdr2oObHKI9w4Hv1XPKc898mE4kgYx58oqsc/JqqdLMDI4YjOLzom+EMlW8HFUd0QfjfAvxSL6sEq/a42fQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 }
+

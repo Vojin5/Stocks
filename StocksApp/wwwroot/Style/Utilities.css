@@ -1,0 +1,116 @@
+﻿/*Startup*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+
+/*Fonts*/
+.medium-font {
+    font-size: 22px;
+}
+
+.big-font {
+    font-size: 30px;
+}
+
+.header-font {
+    font-size: 40px;
+}
+
+.small-font {
+    font-size: 20px;
+}
+
+
+/*Background-Colors*/
+.royalBlue-back {
+    background-color: royalblue;
+    color: #ffffff;
+}
+.royalBlue-back:hover
+{
+    background-color: darkblue;
+}
+
+.green-back {
+    background-color: green;
+    color: #ffffff;
+}
+.green-back:hover
+{
+    background-color:darkgreen;
+}
+
+.red-back {
+    background-color: red;
+    color: #ffffff;
+}
+.red-back:hover
+{
+    background-color: darkred;
+}
+
+/*Input fields*/
+.search-input {
+    border-radius: 10px;
+    font-size: 20px;
+    border: 2px solid gray;
+    padding: 10px;
+}
+.search-input:hover
+{
+    background-color:whitesmoke;
+}
+.search-input:focus {
+    outline:none;
+    border: 2px solid steelblue;
+}
+
+/*Text-Colors*/
+
+.blue-text {
+    color: blue;
+}
+
+.red-text {
+    color: red;
+}
+
+.dimmGray-text {
+    color: dimgray;
+}
+
+/*Display*/
+.hidden {
+    display: none;
+}
+
+
+/*Error*/
+.error-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.error-item {
+    color: red;
+    font-size: 28px;
+}
+
+/*Borders*/
+.border-botttom {
+    border-bottom: 2px solid gray;
+}
+
+.borderless-bottom
+{
+    border-bottom: 2px solid transparent;
+}

@@ -1,24 +1,36 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\JavaScript.js",
-      "PackagePath": "staticwebassets\\JavaScript.js"
+      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\JavaScript\\Layout.js",
+      "PackagePath": "staticwebassets\\JavaScript\\Layout.js"
     },
     {
-      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Orders.css",
-      "PackagePath": "staticwebassets\\Orders.css"
-    },
-    {
-      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\PDF.css",
-      "PackagePath": "staticwebassets\\PDF.css"
+      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\JavaScript\\StockPriceListener.js",
+      "PackagePath": "staticwebassets\\JavaScript\\StockPriceListener.js"
     },
     {
       "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Rotativa\\wkhtmltopdf.exe",
       "PackagePath": "staticwebassets\\Rotativa\\wkhtmltopdf.exe"
     },
     {
-      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\StyleSheet.css",
-      "PackagePath": "staticwebassets\\StyleSheet.css"
+      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Style\\Layout.css",
+      "PackagePath": "staticwebassets\\Style\\Layout.css"
+    },
+    {
+      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Style\\Trade\\Index.css",
+      "PackagePath": "staticwebassets\\Style\\Trade\\Index.css"
+    },
+    {
+      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Style\\Trade\\Orders.css",
+      "PackagePath": "staticwebassets\\Style\\Trade\\Orders.css"
+    },
+    {
+      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Style\\Trade\\PDF.css",
+      "PackagePath": "staticwebassets\\Style\\Trade\\PDF.css"
+    },
+    {
+      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Style\\Utilities.css",
+      "PackagePath": "staticwebassets\\Style\\Utilities.css"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.StocksApp.Microsoft.AspNetCore.StaticWebAssets.props",

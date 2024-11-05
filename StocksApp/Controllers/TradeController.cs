@@ -3,6 +3,7 @@ using Entities.DTO;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Rotativa.AspNetCore;
 using ServiceContracts;
 using StocksApp.ConfiguraitonOptions;
@@ -27,25 +28,33 @@ namespace StocksApp.Controllers
 
         [Route("index")]
         [Route("/")]
-        public async Task<IActionResult> Index(List<string>? Errors)
+        public async Task<IActionResult> Index(List<string>? Errors,
+            string stockSymbol)
         {
             if(_tradingOptions == null || _tradingOptions.DefaultStockSymbol == null)
                 throw new ArgumentNullException(nameof(TradingOptions));
 
+            if (stockSymbol.IsNullOrEmpty())
+                stockSymbol = _tradingOptions.DefaultStockSymbol;
+
             Dictionary<string, object>? companyProfileDictionary =
-               await _finnhubService.GetCompanyProfile(_tradingOptions.DefaultStockSymbol);
+               await _finnhubService.GetCompanyProfile(stockSymbol);
 
             Dictionary<string, object>? stockProfileDictionary =
-                await _finnhubService.GetStockPriceQuote(_tradingOptions.DefaultStockSymbol);
+                await _finnhubService.GetStockPriceQuote(stockSymbol);
 
             if (companyProfileDictionary == null || stockProfileDictionary == null)
-                throw new Exception("Error while handling Finnhub request,dictionary is null");
+            {
+                ViewBag.Errors = new List<string>() { "There was an error while fetching stocks data" };
+                return View("Index", null);
+            }
 
             StockTrade stockTrade = new StockTrade()
             {
                 StockName = companyProfileDictionary["name"].ToString(),
                 StockSymbol = companyProfileDictionary["ticker"].ToString(),
-                Price = Convert.ToDouble(stockProfileDictionary["c"].ToString())
+                Price = Convert.ToDouble(stockProfileDictionary["c"].ToString()),
+                Quantity = _tradingOptions.DefaultOrderQuantity
             };
             if (Errors != null)
             {

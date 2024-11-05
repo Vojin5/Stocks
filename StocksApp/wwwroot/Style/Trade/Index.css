@@ -1,0 +1,62 @@
+﻿
+.trade-button {
+    padding: 8px 12px;
+    border: 2px solid #cacaca;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.stockPrice-font
+{
+    font-weight:bold;
+    font-size: 50px;
+}
+
+.stock-card-container {
+    display: flex;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: #ECECEC;
+    padding: 20px;
+}
+
+.stock-card {
+    width: 60%;
+    padding: 1.5% 1% 1.5% 1%;
+}
+
+.order-container
+{
+    width:40%;
+    border-left:1px solid gray;
+    padding:20px;
+    padding-right:150px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+}
+
+.buttons-container
+{
+    display:flex;
+    justify-content:space-around;
+    gap:10px;
+}
+
+.order-container input
+{
+    width:30%;
+    min-height:25%;
+    font-size:20px;
+    border-radius:10px;
+    text-align:center;
+    border: 2px solid gray;
+}
+.order-container input:focus
+{
+    border:3px solid steelblue;
+    outline:none;
+}
+
