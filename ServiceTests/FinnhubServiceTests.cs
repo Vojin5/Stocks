@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AutoFixture;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Moq;
+using RepositoryContracts;
 using ServiceContracts;
 using Services;
 using System;
@@ -12,82 +15,89 @@ namespace ServiceTests
 {
     public class FinnhubServiceTests
     {
-        private readonly IFinnhubService? _finnhubService;
+        private readonly IFinnhubRepository _finnhubRepository;
+        private readonly IConfiguration _configuration;
+
+        private readonly Mock<IFinnhubRepository> _finnhubRepositoryMock;
+        private readonly Mock<IConfiguration> _configurationMock;
+
+        private readonly IFinnhubService _finnhubService;
+
+        private readonly IFixture _fixture;
         public FinnhubServiceTests()
         {
-            ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder
-                .AddUserSecrets<FinnhubServiceTests>();
-            IConfiguration config = configurationBuilder.Build();
+            _finnhubRepositoryMock = new Mock<IFinnhubRepository>();
+            _finnhubRepository = _finnhubRepositoryMock.Object;
 
-            ServiceCollection services = new ServiceCollection();
+            _configurationMock = new Mock<IConfiguration>();
+            _configuration = _configurationMock.Object;
 
-            services.AddSingleton<IConfiguration>(config);
-            services.AddSingleton<HttpClient>(new HttpClient());
-            services.AddTransient<IFinnhubService, FinnhubService>();
+            _fixture = new Fixture();
 
-            var serviceProvider = services.BuildServiceProvider();
-
-            _finnhubService = serviceProvider.GetService<IFinnhubService>();
+            _finnhubService = new FinnhubService(_finnhubRepository,_configuration);
         }
 
         #region GetCompanyProfile
 
-        //!!Provide api key in the ServiceTest user-secrets
-
-        //Valid stockSymbol and expect data in return
         [Fact]
-        public async Task GetCompanyProfile_ValidSymbol()
+        public async Task GetCompanyProfile_ValidResponse_ToBeSucessful()
         {
-            if (_finnhubService == null)
-                throw new Exception("Finnhub service cannot be initialized");
+            Dictionary<string,object> mockResult = _fixture.Create<Dictionary<string,object>>();           
 
-            Dictionary<string,object>? result = await _finnhubService.GetCompanyProfile("MSFT");
+            _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("testApiKey");
+            _finnhubRepositoryMock.Setup(x => x.GetCompanyProfile(It.IsAny<string>())).ReturnsAsync(mockResult);
+
+            Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("AAPL");
             Assert.NotNull(result);
+            Assert.NotEmpty(result);
         }
 
-        //Invalid StockSymbol provided and expect an InvalidOperationException
-        [Fact]
-        public async Task GetCompanyProfile_InvalidSymbol()
-        {
-            if (_finnhubService == null)
-                throw new Exception("Finnhub service cannot be initialized");
 
-            await Assert.ThrowsAsync<InvalidOperationException>(async () =>
+        [Fact]
+        public async Task GetCompanyProfile_NoApiKeyProvided_ToThrowException()
+        {
+            
+            await Assert.ThrowsAsync<Exception>(async () =>
             {
-                Dictionary<string, object>? result = 
-                await _finnhubService.GetCompanyProfile("DummyText");
+                Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("AAPL");
             });
         }
 
-        #endregion
-
-        #region GetStockPriceQuote
-
-        //!!Provide api key in the ServiceTest user-secrets
-
-        //Valid stockSymbol and expect data in return
         [Fact]
-        public async Task GetStockPrice_ValidSymbol()
+        public async Task GetCompanyProfile_NoStockSymbolProvided_ToThrowArgumentException()
         {
-            if (_finnhubService == null)
-                throw new Exception("Finnhub service cannot be initialized");
-
-            Dictionary<string, object>? result = await _finnhubService.GetStockPriceQuote("MSFT");
-            Assert.NotNull(result);
+            _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("testApiKey");
+            await Assert.ThrowsAsync<ArgumentException>(async () =>
+            {
+                Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("");
+            });
         }
 
-        //Invalid StockSymbol provided and expect an InvalidOperationException
         [Fact]
-        public async Task GetStockPrice_InvalidSymbol()
+        public async Task GetCompanyProfile_BadApiKey_InvalidOperationException()
         {
-            if (_finnhubService == null)
-                throw new Exception("Finnhub service cannot be initialized");
-
+            _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("testApiKey");
+            Dictionary<string, object> resultMock = new Dictionary<string, object>()
+            {
+                {"error","please provide api key" }
+            };
+            _finnhubRepositoryMock.Setup(x => x.GetCompanyProfile(It.IsAny<string>())).ReturnsAsync(resultMock);
             await Assert.ThrowsAsync<InvalidOperationException>(async () =>
             {
-                Dictionary<string, object>? result =
-                await _finnhubService.GetStockPriceQuote("DummyText");
+                Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("AAPL");
+            });
+        }
+
+        [Fact]
+        public async Task GetCompanyProfile_BadSymbol_InvalidOperationException()
+        {
+            _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("testApiKey");
+            Dictionary<string, object> resultMock = new Dictionary<string, object>();
+
+            _finnhubRepositoryMock.Setup(x => x.GetCompanyProfile(It.IsAny<string>())).ReturnsAsync(resultMock);
+            await Assert.ThrowsAsync<InvalidOperationException>(async () =>
+            {
+                Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("\"AAPLMistake\"");
             });
         }
 

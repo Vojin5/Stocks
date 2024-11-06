@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using RepositoryContracts;
+using System.Numerics;
 using System.Text.Json;
 
 namespace Repositories
@@ -17,10 +19,6 @@ namespace Repositories
         public async Task<Dictionary<string, object>?> GetCompanyProfile(string stockSymbol)
         {
             string? apiKey = _configuration["FinnhubApiKey"];
-            if (apiKey == null)
-                throw new Exception("No Api Key provided, FinnhubApiKey secret");
-            if (string.IsNullOrEmpty(stockSymbol))
-                throw new ArgumentException("No symbol provided");
 
             HttpRequestMessage requestMessage = new HttpRequestMessage()
             {
@@ -32,9 +30,6 @@ namespace Repositories
 
             HttpResponseMessage responseMessage = await _httpClient.SendAsync(requestMessage);
 
-            if (!responseMessage.IsSuccessStatusCode)
-                throw new Exception(responseMessage.StatusCode.ToString());
-
             Stream stream = await responseMessage.Content.ReadAsStreamAsync();
             StreamReader reader = new StreamReader(stream);
             string response = await reader.ReadToEndAsync();
@@ -42,23 +37,12 @@ namespace Repositories
             Dictionary<string, object>? result =
                 JsonSerializer.Deserialize<Dictionary<string, object>>(response);
 
-            if (result == null)
-                throw new InvalidOperationException("No response from Finnhub");
-            if (result.Count == 0)
-                throw new InvalidOperationException("Invalid input for symbol or api key");
-            if (result.ContainsKey("error"))
-                throw new InvalidOperationException(result["error"].ToString());
-
             return result;
         }
 
         public async Task<Dictionary<string, object>?> GetStockPriceQuote(string stockSymbol)
         {
             string? apiKey = _configuration["FinnhubApiKey"];
-            if (apiKey == null)
-                throw new Exception("No Api Key provided, FinnhubApiKey secret");
-            if (string.IsNullOrEmpty(stockSymbol))
-                throw new ArgumentException("No symbol provided");
 
             HttpRequestMessage requestMessage = new HttpRequestMessage()
             {
@@ -69,8 +53,6 @@ namespace Repositories
 
             HttpResponseMessage responseMessage = await _httpClient.SendAsync(requestMessage);
 
-            if (!responseMessage.IsSuccessStatusCode)
-                throw new Exception(responseMessage.StatusCode.ToString());
 
             Stream stream = await responseMessage.Content.ReadAsStreamAsync();
             StreamReader reader = new StreamReader(stream);
@@ -78,15 +60,7 @@ namespace Repositories
 
             Dictionary<string, object>? result =
                 JsonSerializer.Deserialize<Dictionary<string, object>>(response);
-            if (result == null)
-                throw new InvalidOperationException("No response from Finnhub");
-            if (Convert.ToDouble(result["c"].ToString()) == 0)
-                throw new InvalidOperationException("Invalid input");
-            if (result.Count == 0)
-                throw new InvalidOperationException("Invalid input for symbol or api key");
-            if (result.ContainsKey("error"))
-                throw new InvalidOperationException(result["error"].ToString());
-
+            
             return result;
         }
 
@@ -106,8 +80,6 @@ namespace Repositories
 
             HttpResponseMessage responseMessage = await _httpClient.SendAsync(requestMessage);
 
-            if (!responseMessage.IsSuccessStatusCode)
-                throw new Exception(responseMessage.StatusCode.ToString());
 
             Stream stream = await responseMessage.Content.ReadAsStreamAsync();
             StreamReader reader = new StreamReader(stream);
@@ -115,10 +87,7 @@ namespace Repositories
 
             List<Dictionary<string, string>>? result =
                 JsonSerializer.Deserialize<List<Dictionary<string, string>>>(response);
-            if (result == null)
-                throw new InvalidOperationException("No response from Finnhub");
-            if (result.Count == 0)
-                throw new InvalidOperationException("Invalid input for symbol or api key");
+            
 
             return result;
         }
@@ -126,10 +95,6 @@ namespace Repositories
         public async Task<Dictionary<string, object>?> SearchStocks(string stockSymbolToSearch)
         {
             string? apiKey = _configuration["FinnhubApiKey"];
-            if (apiKey == null)
-                throw new Exception("No Api Key provided, FinnhubApiKey secret");
-            if (string.IsNullOrEmpty(stockSymbolToSearch))
-                throw new ArgumentException("No symbol provided");
 
             HttpRequestMessage requestMessage = new HttpRequestMessage()
             {
@@ -140,8 +105,6 @@ namespace Repositories
 
             HttpResponseMessage responseMessage = await _httpClient.SendAsync(requestMessage);
 
-            if (!responseMessage.IsSuccessStatusCode)
-                throw new Exception(responseMessage.StatusCode.ToString());
 
             Stream stream = await responseMessage.Content.ReadAsStreamAsync();
             StreamReader reader = new StreamReader(stream);
@@ -149,14 +112,6 @@ namespace Repositories
 
             Dictionary<string, object>? result =
                 JsonSerializer.Deserialize<Dictionary<string, object>>(response);
-            
-
-            if (result == null)
-                throw new InvalidOperationException("No response from Finnhub");
-            if (result.Count == 0)
-                throw new InvalidOperationException("Invalid input for symbol or api key");
-            if (result.ContainsKey("error"))
-                throw new InvalidOperationException(result["error"].ToString());
 
             return result;
         }

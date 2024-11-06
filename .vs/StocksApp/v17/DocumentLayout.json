@@ -3,36 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\wwwroot\\style\\stocks\\explore.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\wwwroot\\style\\stocks\\explore.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{6F2F0CAF-C5E6-47F8-A803-A7322472E784}|ServiceTests\\ServiceTests.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\servicetests\\finnhubservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F2F0CAF-C5E6-47F8-A803-A7322472E784}|ServiceTests\\ServiceTests.csproj|solutionrelative:servicetests\\finnhubservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\views\\stocks\\explore.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\views\\stocks\\explore.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7BC1668F-4A8C-4C29-9B31-0AB33E01FF7F}|Services\\Services.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\services\\finnhubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BC1668F-4A8C-4C29-9B31-0AB33E01FF7F}|Services\\Services.csproj|solutionrelative:services\\finnhubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\views\\shared\\components\\selectedstock\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\views\\shared\\components\\selectedstock\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9F66CCE5-180F-4FCF-A66F-9E55544C8559}|Repositories\\Repositories.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\repositories\\finnhubrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9F66CCE5-180F-4FCF-A66F-9E55544C8559}|Repositories\\Repositories.csproj|solutionrelative:repositories\\finnhubrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\wwwroot\\style\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\wwwroot\\style\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\wwwroot\\style\\utilities.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\wwwroot\\style\\utilities.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\viewcomponents\\selectedstockviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\viewcomponents\\selectedstockviewcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\controllers\\tradecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\controllers\\tradecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\controllers\\stockscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\controllers\\stockscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Vojin\\AppData\\Roaming\\Microsoft\\UserSecrets\\e4628d94-8433-4775-95d0-8268811e3940\\secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,111 +25,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Views\\Shared\\Components\\SelectedStock\\Default.cshtml",
-              "RelativeDocumentMoniker": "StocksApp\\Views\\Shared\\Components\\SelectedStock\\Default.cshtml",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Views\\Shared\\Components\\SelectedStock\\Default.cshtml",
-              "RelativeToolTip": "StocksApp\\Views\\Shared\\Components\\SelectedStock\\Default.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-06T09:27:04.749Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SelectedStockViewComponent.cs",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\ViewComponents\\SelectedStockViewComponent.cs",
-              "RelativeDocumentMoniker": "StocksApp\\ViewComponents\\SelectedStockViewComponent.cs",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\ViewComponents\\SelectedStockViewComponent.cs",
-              "RelativeToolTip": "StocksApp\\ViewComponents\\SelectedStockViewComponent.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAA/wA8AAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T09:23:41.481Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Layout.css",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Style\\Layout.css",
-              "RelativeDocumentMoniker": "StocksApp\\wwwroot\\Style\\Layout.css",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Style\\Layout.css",
-              "RelativeToolTip": "StocksApp\\wwwroot\\Style\\Layout.css",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAgwDkAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-11-05T22:33:54.476Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Utilities.css",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Style\\Utilities.css",
-              "RelativeDocumentMoniker": "StocksApp\\wwwroot\\Style\\Utilities.css",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Style\\Utilities.css",
-              "RelativeToolTip": "StocksApp\\wwwroot\\Style\\Utilities.css",
-              "ViewState": "AQIAABIAAAAAAAAAAAAwwCAAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-11-05T22:01:33.809Z",
-              "EditorCaption": ""
+              "Title": "secrets.json",
+              "DocumentMoniker": "C:\\Users\\Vojin\\AppData\\Roaming\\Microsoft\\UserSecrets\\e4628d94-8433-4775-95d0-8268811e3940\\secrets.json",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Roaming\\Microsoft\\UserSecrets\\e4628d94-8433-4775-95d0-8268811e3940\\secrets.json",
+              "ToolTip": "C:\\Users\\Vojin\\AppData\\Roaming\\Microsoft\\UserSecrets\\e4628d94-8433-4775-95d0-8268811e3940\\secrets.json",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Roaming\\Microsoft\\UserSecrets\\e4628d94-8433-4775-95d0-8268811e3940\\secrets.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-06T21:38:14.05Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Explore.css",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Style\\Stocks\\Explore.css",
-              "RelativeDocumentMoniker": "StocksApp\\wwwroot\\Style\\Stocks\\Explore.css",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Style\\Stocks\\Explore.css",
-              "RelativeToolTip": "StocksApp\\wwwroot\\Style\\Stocks\\Explore.css",
-              "ViewState": "AQIAABUAAAAAAAAAAAAwwDMAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-11-05T21:43:36.046Z",
+              "Title": "FinnhubServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\ServiceTests\\FinnhubServiceTests.cs",
+              "RelativeDocumentMoniker": "ServiceTests\\FinnhubServiceTests.cs",
+              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\ServiceTests\\FinnhubServiceTests.cs",
+              "RelativeToolTip": "ServiceTests\\FinnhubServiceTests.cs",
+              "ViewState": "AQIAAEYAAAAAAAAAAADwv2UAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T20:43:22.968Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Explore.cshtml",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Views\\Stocks\\Explore.cshtml",
-              "RelativeDocumentMoniker": "StocksApp\\Views\\Stocks\\Explore.cshtml",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Views\\Stocks\\Explore.cshtml",
-              "RelativeToolTip": "StocksApp\\Views\\Stocks\\Explore.cshtml",
-              "ViewState": "AQIAABwAAAAAAAAAAAAuwCYAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-05T21:29:28.248Z",
+              "Title": "FinnhubService.cs",
+              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\Services\\FinnhubService.cs",
+              "RelativeDocumentMoniker": "Services\\FinnhubService.cs",
+              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\Services\\FinnhubService.cs",
+              "RelativeToolTip": "Services\\FinnhubService.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAA8wCEAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-06T19:20:28.654Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "TradeController.cs",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Controllers\\TradeController.cs",
-              "RelativeDocumentMoniker": "StocksApp\\Controllers\\TradeController.cs",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Controllers\\TradeController.cs",
-              "RelativeToolTip": "StocksApp\\Controllers\\TradeController.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAQwBwAAAAkAAAA",
+              "DocumentIndex": 2,
+              "Title": "FinnhubRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\Repositories\\FinnhubRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\FinnhubRepository.cs",
+              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\Repositories\\FinnhubRepository.cs",
+              "RelativeToolTip": "Repositories\\FinnhubRepository.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAowBwAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T10:36:51.648Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "StocksController.cs",
-              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Controllers\\StocksController.cs",
-              "RelativeDocumentMoniker": "StocksApp\\Controllers\\StocksController.cs",
-              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Controllers\\StocksController.cs",
-              "RelativeToolTip": "StocksApp\\Controllers\\StocksController.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAuwDIAAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T21:12:07.624Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-06T19:30:41.145Z"
             }
           ]
         }

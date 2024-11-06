@@ -28,8 +28,9 @@ namespace Services
 
             ModelValidator.Validate(request);
             BuyOrder order = request.ToBuyOrder();
-            await _stocksRepository.CreateBuyOrder(order);
-            BuyOrderResponse response = order.ToBuyOrderResponse();
+            order.BuyOrderID = new Guid();
+            BuyOrder responseCreate = await _stocksRepository.CreateBuyOrder(order);
+            BuyOrderResponse response = responseCreate.ToBuyOrderResponse();
             return response;
         }
 
@@ -41,8 +42,8 @@ namespace Services
             ModelValidator.Validate(request);
             SellOrder order = request.ToSellOrder();
             order.SellOrderID = Guid.NewGuid();
-            await _stocksRepository.CreateSellOrder(order);
-            SellOrderResponse response = order.ToSellOrderResponse();
+            SellOrder responseCreate = await _stocksRepository.CreateSellOrder(order);
+            SellOrderResponse response = responseCreate.ToSellOrderResponse();
             return response;
         }
 
