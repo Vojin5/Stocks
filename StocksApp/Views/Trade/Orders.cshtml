@@ -5,16 +5,17 @@
 }
 
 
-<div class="navigation-container">
-    <span class="dimmGray-text big-font">Stocks</span>
-    <i class="fa-solid fa-play" style="color:gray;"></i>
+@section Page
+{
     <span class="dimmGray-text big-font">Orders</span>
-
     <div class="big-font">
         <a asp-controller="trade" asp-action="ordersPDF">Download as PDF</a>
     </div>
-
-</div>
+}
+@section Links
+{
+    <link rel="stylesheet" href="~/Style/Trade/Orders.css" asp-append-version="true" />
+}
 
 <div class="orders-container">
     <div class="buyOrders-container">

@@ -26,7 +26,7 @@ namespace StocksApp.Controllers
             _stocksService = stocksService;
         }
 
-        [Route("index")]
+        [Route("index/{stockSymbol?}")]
         [Route("/")]
         public async Task<IActionResult> Index(List<string>? Errors,
             string stockSymbol)

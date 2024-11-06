@@ -1,0 +1,43 @@
+﻿@model List<StockViewModel>
+@{
+    ViewBag.Title = "Explore";
+}
+
+@section Page
+{
+    <span class="dimmGray-text big-font">Explore</span>
+}
+
+@section Links
+{
+    <link rel="stylesheet" href="~/Style/Stocks/Explore.css" asp-append-version="true" />
+}
+
+<div class="explore-container">
+    <div class="stocks-explore-container">
+
+        <div class="stocks-header">
+            <span class="dimmGray-text small-font">Stocks</span>
+        </div>
+
+        <div class="stocks-list">
+            @foreach(StockViewModel stock in Model)
+            {
+                <a asp-controller="stocks" asp-action="explore" asp-route-selectedStock="@stock.StockSymbol">
+                    <div class="stocks-item">
+                        <span class="small-font"><b>@stock.StockName</b></span>
+                        <span class="smaller-font dimmGray-text">(@stock.StockSymbol)</span>
+                    </div>
+                </a>
+            }
+        </div>
+
+    </div>
+
+    @if(ViewBag.SelectedStock != null)
+    {
+        @await Component.InvokeAsync("SelectedStock", new {stockSymbol = (string)ViewBag.SelectedStock});
+    }
+
+</div>
+

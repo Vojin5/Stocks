@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\Style\\Layout.css"
     },
     {
+      "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Style\\Stocks\\Explore.css",
+      "PackagePath": "staticwebassets\\Style\\Stocks\\Explore.css"
+    },
+    {
       "Id": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\wwwroot\\Style\\Trade\\Index.css",
       "PackagePath": "staticwebassets\\Style\\Trade\\Index.css"
     },

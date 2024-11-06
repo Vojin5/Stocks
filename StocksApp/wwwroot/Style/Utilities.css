@@ -28,6 +28,11 @@ body {
     font-size: 20px;
 }
 
+.smaller-font
+{
+    font-size:15px;
+}
+
 
 /*Background-Colors*/
 .royalBlue-back {
@@ -59,9 +64,9 @@ body {
 
 /*Input fields*/
 .search-input {
-    border-radius: 10px;
+    border-radius: 20px;
     font-size: 20px;
-    border: 2px solid gray;
+    border: 1px solid gray;
     padding: 10px;
 }
 .search-input:hover

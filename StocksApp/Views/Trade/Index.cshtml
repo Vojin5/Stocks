@@ -2,12 +2,15 @@
 @{
     ViewBag.Title = "Stocks";
 }
-
-<div class="navigation-container">
-    <div class="dimmGray-text big-font">Stocks</div>
-    <i class="fa-solid fa-play" style="color:gray;"></i>
+@section Page
+{
     <div class="dimmGray-text big-font">@Model.StockName</div>
-</div>
+}
+@section Links
+{
+    <link rel="stylesheet" href="~/Style/Trade/Index.css" asp-append-version="true" />
+}
+
 
 <form method="post">
     <div class="stock-card-container">

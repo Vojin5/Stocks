@@ -18,8 +18,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Vojin\OneDrive\Desktop\.Net Core\xUnit,Crud,Tags,EF\StocksApp\StocksApp
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Vojin/OneDrive/Desktop/.Net Core/xUnit\,Crud\,Tags\,EF/StocksApp/StocksApp/Views/Shared/Components/SelectedStock/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcU2VsZWN0ZWRTdG9ja1xEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Vojin/OneDrive/Desktop/.Net Core/xUnit\,Crud\,Tags\,EF/StocksApp/StocksApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Vojin/OneDrive/Desktop/.Net Core/xUnit\,Crud\,Tags\,EF/StocksApp/StocksApp/Views/Stocks/Explore.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvY2tzXEV4cGxvcmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Vojin/OneDrive/Desktop/.Net Core/xUnit\,Crud\,Tags\,EF/StocksApp/StocksApp/Views/Trade/Index.cshtml]

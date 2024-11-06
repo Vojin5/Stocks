@@ -4,11 +4,9 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="~/Style/Trade/Index.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Style/Layout.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Style/Trade/Orders.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/Style/Utilities.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Style/Layout.css" asp-append-version="true" />
+    @await RenderSectionAsync("Links",false)
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg
@@ -28,15 +26,6 @@
             </div>
         </div>
 
-        @* <div class="navigation-container">
-            <div class="navigation-item border-botttom">
-                <a asp-controller="trade" asp-action="index">Trade</a>
-            </div>
-            <div class="navigation-item">
-                <a asp-controller="trade" asp-action="orders">Orders</a>
-            </div>
-        </div> *@
-
         <nav class="navigation-container">
             <ul class="navigation-items">
                 <li class="navigation-item trade-navigation">
@@ -45,12 +34,24 @@
                 <li class="navigation-item orders-navigation">
                     <a asp-controller="trade" asp-action="orders">Orders</a>
                 </li>
+                <li class="navigation-item explore-navigation">
+                    <a asp-controller="stocks" asp-action="explore">Explore</a>
+                </li>
             </ul>
         </nav>
+
+        <div class="navigation-container">
+            <div class="dimmGray-text big-font">Stocks</div>
+            <i class="fa-solid fa-play" style="color:gray;"></i>
+            @await RenderSectionAsync("Page",true)
+        </div>
         
         @RenderBody()
     </div>
-    <script src="~/JavaScript/StockPriceListener.js"></script>
+    @if(ViewBag.Title == "Stocks")
+    {
+        <script src="~/JavaScript/StockPriceListener.js"></script>
+    }
     <script src="~/JavaScript/Layout.js" asp-append-version="true"></script>
     @await RenderSectionAsync("validationScripts",false)
 </body>

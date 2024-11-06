@@ -1,7 +1,6 @@
 ﻿
 let navigationItems = document.querySelectorAll(".navigation-items");
 let title = document.title;
-console.log(title);
 switch (title) {
     case "Stocks":
         ResetUnderline(navigationItems);
@@ -10,6 +9,10 @@ switch (title) {
     case "Orders":
         ResetUnderline(navigationItems);
         document.querySelector(".orders-navigation").classList.add("border-underline");
+        break;
+    case "Explore":
+        ResetUnderline(navigationItems);
+        document.querySelector(".explore-navigation").classList.add("border-underline");
         break;
     default:
         ResetUnderline(navigationItems);

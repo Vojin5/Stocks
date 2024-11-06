@@ -1,0 +1,19 @@
+﻿@model SelectedStockViewModel
+
+<form>
+    <div class="selected-stock-container">
+        <img src="@Model.ImageSrc" />
+        <div class="medium-font">@Model.Name (@Model.Symbol)</div>
+        <div class="gray-box smaller-font">@Model.FinnhubIndustry</div>
+        <div>
+            <span class="small-font"><b>Exchange</b></span>
+            <span class="gray-box small-font">@Model.Exchange</span>
+        </div>
+        <div>
+            <span class="medium-font dimmGray-text">$</span>
+            <span class="medium-font">@Model.Price</span>
+        </div>
+        <button class="navigation-button royalBlue-back" asp-controller="trade" asp-action="Index" asp-route-stockSymbol="@Model.Symbol">Trade Now</button>
+
+    </div>
+</form>
