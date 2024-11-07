@@ -33,6 +33,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ServiceContracts\ServiceContracts.csproj" />
     <ProjectReference Include="..\Services\Services.csproj" />
+    <ProjectReference Include="..\StocksApp\StocksApp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

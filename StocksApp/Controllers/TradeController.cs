@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Rotativa.AspNetCore;
 using ServiceContracts;
 using StocksApp.ConfiguraitonOptions;
+using System.ComponentModel.DataAnnotations;
 
 namespace StocksApp.Controllers
 {
@@ -29,12 +30,12 @@ namespace StocksApp.Controllers
         [Route("index/{stockSymbol?}")]
         [Route("/")]
         public async Task<IActionResult> Index(List<string>? Errors,
-            string stockSymbol)
+            string? stockSymbol)
         {
             if(_tradingOptions == null || _tradingOptions.DefaultStockSymbol == null)
                 throw new ArgumentNullException(nameof(TradingOptions));
 
-            if (stockSymbol.IsNullOrEmpty())
+            if (stockSymbol.IsNullOrEmpty() || stockSymbol == null)
                 stockSymbol = _tradingOptions.DefaultStockSymbol;
 
             Dictionary<string, object>? companyProfileDictionary =
@@ -70,11 +71,13 @@ namespace StocksApp.Controllers
         {
             buyOrderRequest.DateAndTimeOfOrder = DateTime.Now;
             ModelState.Clear();
-            TryValidateModel(buyOrderRequest);
-            if(!ModelState.IsValid)
+            var validationContext = new ValidationContext(buyOrderRequest);
+            var validationResults = new List<ValidationResult>();
+            bool isValid = Validator.TryValidateObject(buyOrderRequest, validationContext, validationResults, true);
+
+            if (!isValid)
             {
-                List<string> errors = ModelState.Values.SelectMany(x => x.Errors)
-                    .Select(x => x.ErrorMessage).ToList();
+                List<string?> errors = validationResults.Select(x =>x.ErrorMessage).ToList();
                 return RedirectToAction("Index", new {Errors = errors});
             }
             else
@@ -90,11 +93,14 @@ namespace StocksApp.Controllers
         {
             sellOrderRequest.DateAndTimeOfOrder = DateTime.Now;
             ModelState.Clear();
-            TryValidateModel(sellOrderRequest);
-            if (!ModelState.IsValid)
+            var validationContext = new ValidationContext(sellOrderRequest);
+            var validationResults = new List<ValidationResult>();
+            bool isValid = Validator.TryValidateObject(sellOrderRequest, validationContext, validationResults, true);
+
+            if (!isValid)
             {
-                List<string> errors = ModelState.Values.SelectMany(x => x.Errors)
-                    .Select(x => x.ErrorMessage).ToList();
+
+                List<string?> errors = validationResults.Select(x => x.ErrorMessage).ToList();
                 return RedirectToAction("Index", new { Errors = errors });
             }
             else
