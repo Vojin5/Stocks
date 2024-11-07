@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceTests
+namespace ServiceTests.UnitTests
 {
     public class StockServiceTests
     {
@@ -118,7 +118,7 @@ namespace ServiceTests
         {
             BuyOrderRequest request = _fixture.Build<BuyOrderRequest>()
                 .With(x => x.DateAndTimeOfOrder, DateTime.Now)
-                .With(x => x.StockSymbol,null as string)
+                .With(x => x.StockSymbol, null as string)
                 .With(x => x.Quantity, 100)
                 .With(x => x.Price, 100)
                 .Create();
@@ -153,7 +153,7 @@ namespace ServiceTests
             BuyOrderRequest request = _fixture.Build<BuyOrderRequest>()
                 .With(x => x.DateAndTimeOfOrder, DateTime.Now)
                 .With(x => x.Quantity, 100)
-                .With(x => x.Price,100)
+                .With(x => x.Price, 100)
                 .Create();
 
             BuyOrder expectedBuyOrder = request.ToBuyOrder();
@@ -166,7 +166,7 @@ namespace ServiceTests
             BuyOrderResponse actualResponse = await _stocksService.CreateBuyOrder(request);
             Assert.NotNull(actualResponse);
             ModelValidator.Validate(actualResponse);
-            Assert.Equal(expectedBuyOrderResponse,actualResponse);
+            Assert.Equal(expectedBuyOrderResponse, actualResponse);
         }
         #endregion
 
@@ -254,7 +254,7 @@ namespace ServiceTests
         {
             SellOrderRequest request = _fixture.Build<SellOrderRequest>()
                 .With(x => x.DateAndTimeOfOrder, DateTime.Now)
-                .With(x => x.StockSymbol,null as string)
+                .With(x => x.StockSymbol, null as string)
                 .With(x => x.Quantity, 100)
                 .With(x => x.Price, 100)
                 .Create();
@@ -347,8 +347,8 @@ namespace ServiceTests
             };
 
             _stocksRepositoryMock.Setup(x => x.GetBuyOrders()).ReturnsAsync(mockList);
-            
-            List<BuyOrderResponse> expectedList = new List<BuyOrderResponse>() 
+
+            List<BuyOrderResponse> expectedList = new List<BuyOrderResponse>()
                 { expectedOrder1.ToBuyOrderResponse(),expectedOrder2.ToBuyOrderResponse() };
 
             List<BuyOrderResponse> actualList = await _stocksService.GetBuyOrders();
@@ -387,7 +387,7 @@ namespace ServiceTests
                 .Create();
 
             SellOrder expectedOrder1 = request1.ToSellOrder();
-            expectedOrder1.SellOrderID= Guid.NewGuid();
+            expectedOrder1.SellOrderID = Guid.NewGuid();
             SellOrder expectedOrder2 = request2.ToSellOrder();
             expectedOrder2.SellOrderID = Guid.NewGuid();
 

@@ -24,7 +24,7 @@ namespace StocksApp.Controllers
         [Route("explore/{selectedStock?}")]
         public async Task<IActionResult> Explore(string? selectedStock)
         {
-            if(_options.Top25PopularStocks == null || _options.Top25PopularStocks.IsNullOrEmpty())
+            if(_options == null || _options.Top25PopularStocks == null || _options.Top25PopularStocks.IsNullOrEmpty())
             {
                 ViewBag.Errors = "Error with getting top stocks from options";
                 return View();

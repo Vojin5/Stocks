@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Http;
 using Entities;
 using Rotativa.AspNetCore;
 
-namespace ServiceTests
+namespace ServiceTests.ControllerTests
 {
     public class TradeControllerTests
     {
@@ -40,12 +40,8 @@ namespace ServiceTests
             _finnhubService = _finnhubServiceMock.Object;
             _tradingOptions = _optionsMock.Object;
 
-            
-
             _fixture = new Fixture();
 
-            //service init
-            
         }
         //Index Method used for root to display default trade option
         //Could display errors that encounter on buy or sell
@@ -109,7 +105,7 @@ namespace ServiceTests
             _finnhubServiceMock.Setup(x => x.GetStockPriceQuote(It.IsAny<string>())).ReturnsAsync(mockResultStock);
 
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
-            
+
 
             IActionResult result = await controller.Index(new List<string>()
             {
@@ -189,7 +185,9 @@ namespace ServiceTests
         }
 
         #endregion
-
+        //Performs the insertion into database a new BuyOrder
+        //Receives BuyOrderRequest and redirects to Orders Page
+        //Redirects to Index with errors on failure
         #region BuyOrder
 
         /// <summary>
@@ -206,7 +204,7 @@ namespace ServiceTests
                 .Create();
 
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
-            
+
             IActionResult result = await controller.BuyOrder(request);
             RedirectToActionResult redirectResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.True(redirectResult.ActionName == "Orders"
@@ -237,7 +235,9 @@ namespace ServiceTests
         }
 
         #endregion
-
+        //Performs the insertion into database a new SellOrder
+        //Receives SellOrderRequest and redirects to Order Page
+        //Redirects to Index with errors on failure
         #region SellOrder
 
         /// <summary>
@@ -285,7 +285,7 @@ namespace ServiceTests
         }
 
         #endregion
-
+        //Returns all Orders from database with view model OrdersViewModel
         #region Orders
         /// <summary>
         /// Getting ViewModel with null properties
@@ -296,7 +296,7 @@ namespace ServiceTests
         {
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
             IActionResult result = await controller.Orders();
-            ViewResult viewResult =  Assert.IsType<ViewResult>(result);
+            ViewResult viewResult = Assert.IsType<ViewResult>(result);
             OrdersViewModel viewModel = Assert.IsAssignableFrom<OrdersViewModel>(viewResult.Model);
             Assert.Null(viewModel.SellOrders);
             Assert.Null(viewModel.BuyOrders);
@@ -337,7 +337,7 @@ namespace ServiceTests
         }
 
         #endregion
-
+        //Returns all Orders from database in form of PDF
         #region OrdersPDF
 
         /// <summary>

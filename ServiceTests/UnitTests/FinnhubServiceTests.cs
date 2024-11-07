@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceTests
+namespace ServiceTests.UnitTests
 {
     public class FinnhubServiceTests
     {
@@ -34,7 +34,7 @@ namespace ServiceTests
 
             _fixture = new Fixture();
 
-            _finnhubService = new FinnhubService(_finnhubRepository,_configuration);
+            _finnhubService = new FinnhubService(_finnhubRepository, _configuration);
         }
 
         //Gets the company information based on given stock symbol
@@ -50,7 +50,7 @@ namespace ServiceTests
         [Fact]
         public async Task GetCompanyProfile_ValidInput_ToBeSucessful()
         {
-            Dictionary<string,object> mockResult = _fixture.Create<Dictionary<string,object>>();           
+            Dictionary<string, object> mockResult = _fixture.Create<Dictionary<string, object>>();
 
             _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("testApiKey");
             _finnhubRepositoryMock.Setup(x => x.GetCompanyProfile(It.IsAny<string>())).ReturnsAsync(mockResult);
@@ -67,7 +67,7 @@ namespace ServiceTests
         [Fact]
         public async Task GetCompanyProfile_NoApiKeyProvided_ToThrowException()
         {
-            
+
             await Assert.ThrowsAsync<Exception>(async () =>
             {
                 Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("AAPL");
@@ -163,7 +163,7 @@ namespace ServiceTests
                 Dictionary<string, object>? result = await _finnhubService.GetStockPriceQuote("AAPL");
             });
         }
-        
+
         /// <summary>
         /// Throws argument exception when called with null or empty symbol
         /// </summary>
@@ -177,7 +177,7 @@ namespace ServiceTests
                 Dictionary<string, object>? result = await _finnhubService.GetStockPriceQuote("");
             });
         }
-        
+
         /// <summary>
         /// Throws invalid operation exception when bad api key is provided
         /// </summary>
@@ -196,7 +196,7 @@ namespace ServiceTests
                 Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("AAPL");
             });
         }
-        
+
         /// <summary>
         /// Throws invalid operation exception when bad symbol is sent
         /// </summary>
@@ -265,11 +265,11 @@ namespace ServiceTests
         /// Result of api call is { count: number , result : [...] }
         /// </summary>
         /// <returns>Checks the return dictionary</returns>
-        [Fact]        
+        [Fact]
         public async Task SearchStocks_ValidInput_ToBeSucessful()
         {
             _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("TestApiKey");
-            Dictionary<string,object> mockResult = _fixture.Create<Dictionary<string, object>>();
+            Dictionary<string, object> mockResult = _fixture.Create<Dictionary<string, object>>();
             _finnhubRepositoryMock.Setup(x => x.SearchStocks(It.IsAny<string>())).ReturnsAsync(mockResult);
 
             Dictionary<string, object>? actualResult = await _finnhubService.SearchStocks("AAPL");
