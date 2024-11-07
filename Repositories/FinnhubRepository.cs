@@ -67,10 +67,7 @@ namespace Repositories
         public async Task<List<Dictionary<string, string>>?> GetStocks()
         {
             string? apiKey = _configuration["FinnhubApiKey"];
-            if (apiKey == null)
-                throw new Exception("No Api Key provided, FinnhubApiKey secret");
             
-
             HttpRequestMessage requestMessage = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
@@ -88,7 +85,6 @@ namespace Repositories
             List<Dictionary<string, string>>? result =
                 JsonSerializer.Deserialize<List<Dictionary<string, string>>>(response);
             
-
             return result;
         }
 

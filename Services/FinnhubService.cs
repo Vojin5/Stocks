@@ -57,6 +57,8 @@ namespace Services
         public async Task<List<Dictionary<string, string>>?> GetStocks()
         {
             string? apiKey = _configuration["FinnhubApiKey"];
+            if (apiKey == null)
+                throw new Exception("No Api Key provided, FinnhubApiKey secret");
 
             List<Dictionary<string,string>>? result =  await _finnhubRepository.GetStocks();
 
