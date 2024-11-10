@@ -29,8 +29,7 @@ namespace StocksApp.Controllers
 
         [Route("index/{stockSymbol?}")]
         [Route("/")]
-        public async Task<IActionResult> Index(List<string>? Errors,
-            string? stockSymbol)
+        public async Task<IActionResult> Index(string? stockSymbol)
         {
             if(_tradingOptions == null || _tradingOptions.DefaultStockSymbol == null)
                 throw new ArgumentNullException(nameof(TradingOptions));
@@ -47,7 +46,7 @@ namespace StocksApp.Controllers
             if (companyProfileDictionary == null || stockProfileDictionary == null)
             {
                 ViewBag.Errors = new List<string>() { "There was an error while fetching stocks data" };
-                return View("Index", null);
+                return View("Index", new StockTrade());
             }
 
             StockTrade stockTrade = new StockTrade()
@@ -57,10 +56,6 @@ namespace StocksApp.Controllers
                 Price = Convert.ToDouble(stockProfileDictionary["c"].ToString()),
                 Quantity = _tradingOptions.DefaultOrderQuantity
             };
-            if (Errors != null)
-            {
-                ViewBag.Errors = Errors;
-            }
             return View("Index",stockTrade);
         }
 
@@ -78,7 +73,8 @@ namespace StocksApp.Controllers
             if (!isValid)
             {
                 List<string?> errors = validationResults.Select(x =>x.ErrorMessage).ToList();
-                return RedirectToAction("Index", new {Errors = errors});
+                ViewBag.Errors = errors;
+                return RedirectToAction("Index");
             }
             else
             {
@@ -101,7 +97,8 @@ namespace StocksApp.Controllers
             {
 
                 List<string?> errors = validationResults.Select(x => x.ErrorMessage).ToList();
-                return RedirectToAction("Index", new { Errors = errors });
+                ViewBag.Errors = errors;
+                return RedirectToAction("Index");
             }
             else
             {

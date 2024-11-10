@@ -22,15 +22,15 @@ namespace Services
             if (string.IsNullOrEmpty(apiKey))
                 throw new Exception("No Api Key provided, FinnhubApiKey secret");
             if (string.IsNullOrEmpty(stockSymbol))
-                throw new ArgumentException("No symbol provided");
+                return null;
 
 
             Dictionary<string,object>? result = await _finnhubRepository.GetCompanyProfile(stockSymbol);
 
             if (result.IsNullOrEmpty() || result == null)
-                throw new InvalidOperationException("Empty response from finnhub");
+                return null;
             if (result.ContainsKey("error"))
-                throw new InvalidOperationException(result["error"].ToString());
+                return null;
             return result;
         }
 
@@ -40,16 +40,16 @@ namespace Services
             if (apiKey == null)
                 throw new Exception("No Api Key provided, FinnhubApiKey secret");
             if (string.IsNullOrEmpty(stockSymbol))
-                throw new ArgumentException("No symbol provided");
+                return null;
 
             Dictionary<string,object>? result =  await _finnhubRepository.GetStockPriceQuote(stockSymbol);
 
             if (result == null || result.IsNullOrEmpty())
-                throw new InvalidOperationException("No response from Finnhub");
-            if (Convert.ToDouble(result["c"].ToString()) == 0)
-                throw new InvalidOperationException("Invalid input");
+                return null;
             if (result.ContainsKey("error"))
-                throw new InvalidOperationException(result["error"].ToString());
+                return null;
+            if (Convert.ToDouble(result["c"].ToString()) == 0)
+                return null;
 
             return result;
         }
@@ -63,11 +63,11 @@ namespace Services
             List<Dictionary<string,string>>? result =  await _finnhubRepository.GetStocks();
 
             if (result == null || result.IsNullOrEmpty())
-                throw new InvalidOperationException("No response from Finnhub");
+                return null;
             if (result.Count == 0)
-                throw new InvalidOperationException("Invalid input for symbol or api key");
+                return null;
             if (result.Count == 1)
-                throw new InvalidOperationException("Provide api key in configuration");
+                return null;
 
             return result;
         }
@@ -78,16 +78,16 @@ namespace Services
             if (apiKey == null)
                 throw new Exception("No Api Key provided, FinnhubApiKey secret");
             if (string.IsNullOrEmpty(stockSymbolToSearch))
-                throw new ArgumentException("No symbol provided");
+                return null;
 
             Dictionary<string,object>? result =  await _finnhubRepository.SearchStocks(stockSymbolToSearch);
 
             if (result == null || result.IsNullOrEmpty())
-                throw new InvalidOperationException("No response from Finnhub");
+                return null;
             if (result.Count == 0)
-                throw new InvalidOperationException("Invalid input for symbol or api key");
+                return null;
             if (result.ContainsKey("error"))
-                throw new InvalidOperationException(result["error"].ToString());
+                return null;
 
             return result;
         }

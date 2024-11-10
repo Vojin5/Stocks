@@ -18,98 +18,130 @@ namespace Repositories
         }
         public async Task<Dictionary<string, object>?> GetCompanyProfile(string stockSymbol)
         {
-            string? apiKey = _configuration["FinnhubApiKey"];
-
-            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            try
             {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri(
-                    $"https://finnhub.io/api/v1/stock/profile2?symbol={stockSymbol}" +
-                    $"&token={apiKey}")
-            };
+                string? apiKey = _configuration["FinnhubApiKey"];
 
-            HttpResponseMessage responseMessage = await _httpClient.SendAsync(requestMessage);
+                HttpRequestMessage requestMessage = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri(
+                        $"https://finnhub.io/api/v1/stock/profile2?symbol={stockSymbol}" +
+                        $"&token={apiKey}")
+                };
 
-            Stream stream = await responseMessage.Content.ReadAsStreamAsync();
-            StreamReader reader = new StreamReader(stream);
-            string response = await reader.ReadToEndAsync();
+                HttpResponseMessage responseMessage = await _httpClient.SendAsync(requestMessage);
 
-            Dictionary<string, object>? result =
-                JsonSerializer.Deserialize<Dictionary<string, object>>(response);
+                Stream stream = await responseMessage.Content.ReadAsStreamAsync();
+                StreamReader reader = new StreamReader(stream);
+                string response = await reader.ReadToEndAsync();
 
-            return result;
+                Dictionary<string, object>? result =
+                    JsonSerializer.Deserialize<Dictionary<string, object>>(response);
+
+                return result;
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
         }
 
         public async Task<Dictionary<string, object>?> GetStockPriceQuote(string stockSymbol)
         {
-            string? apiKey = _configuration["FinnhubApiKey"];
-
-            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            try
             {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri(
-                    $"https://finnhub.io/api/v1/quote?symbol={stockSymbol}&token={apiKey}")
-            };
+                string? apiKey = _configuration["FinnhubApiKey"];
 
-            HttpResponseMessage responseMessage = await _httpClient.SendAsync(requestMessage);
+                HttpRequestMessage requestMessage = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri(
+                        $"https://finnhub.io/api/v1/quote?symbol={stockSymbol}&token={apiKey}")
+                };
+
+                HttpResponseMessage responseMessage = await _httpClient.SendAsync(requestMessage);
 
 
-            Stream stream = await responseMessage.Content.ReadAsStreamAsync();
-            StreamReader reader = new StreamReader(stream);
-            string response = await reader.ReadToEndAsync();
+                Stream stream = await responseMessage.Content.ReadAsStreamAsync();
+                StreamReader reader = new StreamReader(stream);
+                string response = await reader.ReadToEndAsync();
 
-            Dictionary<string, object>? result =
-                JsonSerializer.Deserialize<Dictionary<string, object>>(response);
-            
-            return result;
+                Dictionary<string, object>? result =
+                    JsonSerializer.Deserialize<Dictionary<string, object>>(response);
+
+                return result;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
         }
 
         public async Task<List<Dictionary<string, string>>?> GetStocks()
         {
-            string? apiKey = _configuration["FinnhubApiKey"];
-            
-            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            try
             {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri(
-                    $"https://finnhub.io/api/v1/stock/symbol?exchange=US&token={apiKey}")
-            };
+                string? apiKey = _configuration["FinnhubApiKey"];
 
-            HttpResponseMessage responseMessage = await _httpClient.SendAsync(requestMessage);
+                HttpRequestMessage requestMessage = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri(
+                        $"https://finnhub.io/api/v1/stock/symbol?exchange=US&token={apiKey}")
+                };
+
+                HttpResponseMessage responseMessage = await _httpClient.SendAsync(requestMessage);
 
 
-            Stream stream = await responseMessage.Content.ReadAsStreamAsync();
-            StreamReader reader = new StreamReader(stream);
-            string response = await reader.ReadToEndAsync();
+                Stream stream = await responseMessage.Content.ReadAsStreamAsync();
+                StreamReader reader = new StreamReader(stream);
+                string response = await reader.ReadToEndAsync();
 
-            List<Dictionary<string, string>>? result =
-                JsonSerializer.Deserialize<List<Dictionary<string, string>>>(response);
-            
-            return result;
+                List<Dictionary<string, string>>? result =
+                    JsonSerializer.Deserialize<List<Dictionary<string, string>>>(response);
+
+                return result;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
         }
 
         public async Task<Dictionary<string, object>?> SearchStocks(string stockSymbolToSearch)
         {
-            string? apiKey = _configuration["FinnhubApiKey"];
-
-            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            try
             {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri(
-                    $"https://finnhub.io/api/v1/search?q={stockSymbolToSearch}&token={apiKey}")
-            };
+                string? apiKey = _configuration["FinnhubApiKey"];
 
-            HttpResponseMessage responseMessage = await _httpClient.SendAsync(requestMessage);
+                HttpRequestMessage requestMessage = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri(
+                        $"https://finnhub.io/api/v1/search?q={stockSymbolToSearch}&token={apiKey}")
+                };
+
+                HttpResponseMessage responseMessage = await _httpClient.SendAsync(requestMessage);
 
 
-            Stream stream = await responseMessage.Content.ReadAsStreamAsync();
-            StreamReader reader = new StreamReader(stream);
-            string response = await reader.ReadToEndAsync();
+                Stream stream = await responseMessage.Content.ReadAsStreamAsync();
+                StreamReader reader = new StreamReader(stream);
+                string response = await reader.ReadToEndAsync();
 
-            Dictionary<string, object>? result =
-                JsonSerializer.Deserialize<Dictionary<string, object>>(response);
+                Dictionary<string, object>? result =
+                    JsonSerializer.Deserialize<Dictionary<string, object>>(response);
 
-            return result;
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
         }
     }
 }

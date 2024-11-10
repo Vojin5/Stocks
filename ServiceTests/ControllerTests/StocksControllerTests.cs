@@ -1,6 +1,7 @@
 ﻿using AutoFixture;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using Moq;
 using RepositoryContracts;
@@ -21,10 +22,12 @@ namespace ServiceTests.ControllerTests
         private readonly IStocksService _stocksService;
         private readonly IFinnhubService _finnhubService;
         private readonly IOptions<TradingOptions> _tradingOptions;
+        private readonly IMemoryCache _memoryCache;
 
         private readonly Mock<IStocksService> _stocksServiceMock;
         private readonly Mock<IFinnhubService> _finnhubServiceMock;
         private readonly Mock<IOptions<TradingOptions>> _optionsMock;
+        private readonly Mock<IMemoryCache> _memoryCacheMock;
 
         private readonly IFixture _fixture;
 
@@ -33,10 +36,12 @@ namespace ServiceTests.ControllerTests
             _finnhubServiceMock = new Mock<IFinnhubService>();
             _stocksServiceMock = new Mock<IStocksService>();
             _optionsMock = new Mock<IOptions<TradingOptions>>();
+            _memoryCacheMock = new Mock<IMemoryCache>();
 
             _stocksService = _stocksServiceMock.Object;
             _finnhubService = _finnhubServiceMock.Object;
             _tradingOptions = _optionsMock.Object;
+            _memoryCache = _memoryCacheMock.Object;
 
             _fixture = new Fixture();
         }
@@ -67,8 +72,11 @@ namespace ServiceTests.ControllerTests
                 new Dictionary<string, string>(){{"symbol","NVDA" },{"description","Nvidia"}}
             };
             _finnhubServiceMock.Setup(x => x.GetStocks()).ReturnsAsync(apiMock);
+            var cacheEntryMock = new Mock<ICacheEntry>();
+            _memoryCacheMock.Setup(x => x.CreateEntry(It.IsAny<object>())).Returns(cacheEntryMock.Object);
+            cacheEntryMock.Setup(x => x.Value).Returns(apiMock);
 
-            StocksController controller = new StocksController(_tradingOptions, _finnhubService, _stocksService);
+            StocksController controller = new StocksController(_tradingOptions, _finnhubService, _stocksService,_memoryCache);
 
             IActionResult result = await controller.Explore(null);
             ViewResult viewResult = Assert.IsType<ViewResult>(result);
@@ -96,7 +104,7 @@ namespace ServiceTests.ControllerTests
             };
             _finnhubServiceMock.Setup(x => x.GetStocks()).ReturnsAsync(apiMock);
 
-            StocksController controller = new StocksController(_tradingOptions, _finnhubService, _stocksService);
+            StocksController controller = new StocksController(_tradingOptions, _finnhubService, _stocksService, _memoryCache);
 
             IActionResult result = await controller.Explore(null);
             ViewResult viewResult = Assert.IsType<ViewResult>(result);
@@ -120,8 +128,11 @@ namespace ServiceTests.ControllerTests
                 new Dictionary<string, string>(){{"symbol","NVDA" },{"description","Nvidia"}}
             };
             _finnhubServiceMock.Setup(x => x.GetStocks()).ReturnsAsync(apiMock);*/
+            var cacheEntryMock = new Mock<ICacheEntry>();
+            _memoryCacheMock.Setup(x => x.CreateEntry(It.IsAny<object>())).Returns(cacheEntryMock.Object);
+            cacheEntryMock.Setup(x => x.Value).Returns(null as Object);
 
-            StocksController controller = new StocksController(_tradingOptions, _finnhubService, _stocksService);
+            StocksController controller = new StocksController(_tradingOptions, _finnhubService, _stocksService, _memoryCache);
 
             IActionResult result = await controller.Explore(null);
             ViewResult viewResult = Assert.IsType<ViewResult>(result);
@@ -145,8 +156,12 @@ namespace ServiceTests.ControllerTests
                 new Dictionary<string, string>(){{"symbol","NVDA" },{"description","Nvidia"}}
             };
             _finnhubServiceMock.Setup(x => x.GetStocks()).ReturnsAsync(apiMock);
+            
+            var cacheEntryMock = new Mock<ICacheEntry>();
+            _memoryCacheMock.Setup(x => x.CreateEntry(It.IsAny<object>())).Returns(cacheEntryMock.Object);
+            cacheEntryMock.Setup(x => x.Value).Returns(apiMock);
 
-            StocksController controller = new StocksController(_tradingOptions, _finnhubService, _stocksService);
+            StocksController controller = new StocksController(_tradingOptions, _finnhubService, _stocksService, _memoryCache);
 
             IActionResult result = await controller.Explore("AAPL");
             ViewResult viewResult = Assert.IsType<ViewResult>(result);

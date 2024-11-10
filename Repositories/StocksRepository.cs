@@ -17,28 +17,74 @@ namespace Repositories
             _dbContext = stocksDbContext;
         }
 
-        public async Task<BuyOrder> CreateBuyOrder(BuyOrder buyOrder)
+        public async Task<BuyOrder?> CreateBuyOrder(BuyOrder buyOrder)
         {
-            await _dbContext.BuyOrders.AddAsync(buyOrder);
-            await _dbContext.SaveChangesAsync();
-            return buyOrder;
+            try
+            {
+                await _dbContext.BuyOrders.AddAsync(buyOrder);
+                int changes = await _dbContext.SaveChangesAsync();
+                if(changes > 0)
+                {
+                    return buyOrder;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
         }
 
-        public async Task<SellOrder> CreateSellOrder(SellOrder sellOrder)
+        public async Task<SellOrder?> CreateSellOrder(SellOrder sellOrder)
         {
-            await _dbContext.SellOrders.AddAsync(sellOrder);
-            await _dbContext.SaveChangesAsync();
-            return sellOrder;
+            try
+            {
+                await _dbContext.SellOrders.AddAsync(sellOrder);
+                int changes = await _dbContext.SaveChangesAsync();
+                if(changes > 0)
+                {
+                    return sellOrder;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
         }
 
-        public async Task<List<BuyOrder>> GetBuyOrders()
+        public async Task<List<BuyOrder>?> GetBuyOrders()
         {
-            return await _dbContext.BuyOrders.ToListAsync();
+            try
+            {
+                return await _dbContext.BuyOrders.ToListAsync();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
         }
 
-        public async Task<List<SellOrder>> GetSellOrders()
+        public async Task<List<SellOrder>?> GetSellOrders()
         {
-            return await _dbContext.SellOrders.ToListAsync();
+            try
+            {
+                return await _dbContext.SellOrders.ToListAsync();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
         }
     }
 }

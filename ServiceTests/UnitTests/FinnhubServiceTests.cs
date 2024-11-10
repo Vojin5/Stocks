@@ -75,25 +75,23 @@ namespace ServiceTests.UnitTests
         }
 
         /// <summary>
-        /// Argument exception when no stock symbol is provied before api call
+        /// When no stock symbol provided service returns null
         /// </summary>
-        /// <returns>Argument Exception</returns>
+        /// <returns>null</returns>
         [Fact]
-        public async Task GetCompanyProfile_NoStockSymbolProvided_ToThrowArgumentException()
+        public async Task GetCompanyProfile_NoStockSymbolProvided_ToBeNull()
         {
             _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("testApiKey");
-            await Assert.ThrowsAsync<ArgumentException>(async () =>
-            {
-                Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("");
-            });
+            Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("");
+            Assert.Null(result);
         }
 
         /// <summary>
-        /// Throws invalid operation exception when supplied with bad api key
+        /// Returns null when provided api key is bad
         /// </summary>
-        /// <returns>Invalid Operation Exception</returns>
+        /// <returns>null</returns>
         [Fact]
-        public async Task GetCompanyProfile_BadApiKey_InvalidOperationException()
+        public async Task GetCompanyProfile_BadApiKey_ToBeNull()
         {
             _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("testApiKey");
             Dictionary<string, object> resultMock = new Dictionary<string, object>()
@@ -101,27 +99,23 @@ namespace ServiceTests.UnitTests
                 {"error","please provide api key" }
             };
             _finnhubRepositoryMock.Setup(x => x.GetCompanyProfile(It.IsAny<string>())).ReturnsAsync(resultMock);
-            await Assert.ThrowsAsync<InvalidOperationException>(async () =>
-            {
-                Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("AAPL");
-            });
+            Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("AAPL");
+            Assert.Null(result);
         }
 
         /// <summary>
-        /// Throws invalid operation exception when supplied with bad symbol
+        /// When provided with bad symbol service returns null
         /// </summary>
-        /// <returns>Invalid Operation Exception</returns>
+        /// <returns>null</returns>
         [Fact]
-        public async Task GetCompanyProfile_BadSymbol_InvalidOperationException()
+        public async Task GetCompanyProfile_BadSymbol_ToBeNull()
         {
             _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("testApiKey");
             Dictionary<string, object> resultMock = new Dictionary<string, object>();
 
             _finnhubRepositoryMock.Setup(x => x.GetCompanyProfile(It.IsAny<string>())).ReturnsAsync(resultMock);
-            await Assert.ThrowsAsync<InvalidOperationException>(async () =>
-            {
-                Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("\"AAPLMistake\"");
-            });
+            Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("\"AAPLMistake\"");
+            Assert.Null(result);
         }
 
         #endregion
@@ -157,7 +151,6 @@ namespace ServiceTests.UnitTests
         [Fact]
         public async Task GetStockPriceQuote_NoApiKeyProvided_ToThrowException()
         {
-
             await Assert.ThrowsAsync<Exception>(async () =>
             {
                 Dictionary<string, object>? result = await _finnhubService.GetStockPriceQuote("AAPL");
@@ -165,25 +158,23 @@ namespace ServiceTests.UnitTests
         }
 
         /// <summary>
-        /// Throws argument exception when called with null or empty symbol
+        /// Without proper stock symbol service returns null
         /// </summary>
-        /// <returns>Argument exception</returns>
+        /// <returns>null</returns>
         [Fact]
-        public async Task GetStockPriceQuote_NoStockSymbolProvided_ToThrowArgumentException()
+        public async Task GetStockPriceQuote_NoStockSymbolProvided_ToBeNull()
         {
             _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("testApiKey");
-            await Assert.ThrowsAsync<ArgumentException>(async () =>
-            {
-                Dictionary<string, object>? result = await _finnhubService.GetStockPriceQuote("");
-            });
+            Dictionary<string, object>? result = await _finnhubService.GetStockPriceQuote("");
+            Assert.Null(result);
         }
 
         /// <summary>
-        /// Throws invalid operation exception when bad api key is provided
+        /// Returns null when bad api key is provided
         /// </summary>
-        /// <returns>Invalid operation exception</returns>
+        /// <returns>null</returns>
         [Fact]
-        public async Task GetStockPriceQuote_BadApiKey_InvalidOperationException()
+        public async Task GetStockPriceQuote_BadApiKey_ToBeNull()
         {
             _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("testApiKey");
             Dictionary<string, object> resultMock = new Dictionary<string, object>()
@@ -191,16 +182,14 @@ namespace ServiceTests.UnitTests
                 {"error","please provide api key" }
             };
             _finnhubRepositoryMock.Setup(x => x.GetStockPriceQuote(It.IsAny<string>())).ReturnsAsync(resultMock);
-            await Assert.ThrowsAsync<InvalidOperationException>(async () =>
-            {
-                Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("AAPL");
-            });
+            Dictionary<string, object>? result = await _finnhubService.GetStockPriceQuote("AAPL");
+            Assert.Null(result);
         }
 
         /// <summary>
-        /// Throws invalid operation exception when bad symbol is sent
+        /// Returns null when bad symbol is provided
         /// </summary>
-        /// <returns>Invalid Operation Exception</returns>
+        /// <returns>null</returns>
         [Fact]
         public async Task GetStockPriceQuote_BadSymbol_InvalidOperationException()
         {
@@ -209,10 +198,8 @@ namespace ServiceTests.UnitTests
             resultMock.Add("c", 0);
 
             _finnhubRepositoryMock.Setup(x => x.GetStockPriceQuote(It.IsAny<string>())).ReturnsAsync(resultMock);
-            await Assert.ThrowsAsync<InvalidOperationException>(async () =>
-            {
-                Dictionary<string, object>? result = await _finnhubService.GetCompanyProfile("\"AAPLMistake\"");
-            });
+            Dictionary<string, object>? result = await _finnhubService.GetStockPriceQuote("\"AAPLMistake\"");
+            Assert.Null(result);
         }
 
         #endregion
@@ -251,6 +238,23 @@ namespace ServiceTests.UnitTests
             {
                 await _finnhubService.GetStocks();
             });
+        }
+
+        /// <summary>
+        /// Returns null when bad api provided
+        /// </summary>
+        /// <returns>null</returns>
+        [Fact]
+        public async Task GetStocks_BadApiKeyProvided_ToBeNull()
+        {
+            _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("TestApiKey");
+            List<Dictionary<string, string>> resultMock = new List<Dictionary<string, string>>()
+            {
+                new Dictionary<string, string>(){ { "error", "Invalid Api Key" } }
+            };
+            _finnhubRepositoryMock.Setup(x => x.GetStocks()).ReturnsAsync(resultMock);
+            List<Dictionary<string, string>>? result = await _finnhubService.GetStocks();
+            Assert.Null(result);
         }
 
         #endregion
@@ -293,26 +297,24 @@ namespace ServiceTests.UnitTests
         }
 
         /// <summary>
-        /// If stock symbol is null or empty service throws Argument exception
+        /// returns null when no stock symbol is provided
         /// </summary>
-        /// <returns>Argument Exception</returns>
+        /// <returns>null</returns>
         [Fact]
-        public async Task SearchStocks_NoStockSymbolProvied_ToThrowArgumentException()
+        public async Task SearchStocks_NoStockSymbolProvied_ToBeNull()
         {
             _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("TestApiKey");
 
-            await Assert.ThrowsAsync<ArgumentException>(async () =>
-            {
-                await _finnhubService.SearchStocks("");
-            });
+            Dictionary<string,object>? result = await _finnhubService.SearchStocks("");
+            Assert.Null(result);
         }
 
         /// <summary>
-        /// If the provided api key is bad the result is in error
+        /// Returns null when bad api key is provided
         /// </summary>
-        /// <returns>Invalid Operation Exception</returns>
+        /// <returns>null</returns>
         [Fact]
-        public async Task SearchStocks_BadApiKey_ToThrowInvalidOperationException()
+        public async Task SearchStocks_BadApiKey_ToBeNull()
         {
             _configurationMock.Setup(x => x["FinnhubApiKey"]).Returns("TestApiKey");
             Dictionary<string, object> mockResult = new Dictionary<string, object>()
@@ -321,10 +323,8 @@ namespace ServiceTests.UnitTests
             };
             _finnhubRepositoryMock.Setup(x => x.SearchStocks(It.IsAny<string>())).ReturnsAsync(mockResult);
 
-            await Assert.ThrowsAsync<InvalidOperationException>(async () =>
-            {
-                await _finnhubService.SearchStocks("AAPL");
-            });
+            Dictionary<string,object>? result = await _finnhubService.SearchStocks("AAPL");
+            Assert.Null(result);
         }
 
         #endregion

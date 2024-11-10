@@ -73,7 +73,7 @@ namespace ServiceTests.ControllerTests
 
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
 
-            IActionResult result = await controller.Index(null, null);
+            IActionResult result = await controller.Index(null);
 
             ViewResult viewResult = Assert.IsType<ViewResult>(result);
             Assert.IsAssignableFrom<StockTrade>(viewResult.ViewData.Model);
@@ -81,42 +81,6 @@ namespace ServiceTests.ControllerTests
             Assert.True(viewResult.ViewData["Errors"] == null);
         }
 
-        /// <summary>
-        /// Added Errors passed as argument
-        /// </summary>
-        /// <returns>View with errors</returns>
-        [Fact]
-        public async Task Index_ValidInputWithErrors_ToGetIndexView()
-        {
-            TradingOptions tradingOptionsMock = new TradingOptions();
-            tradingOptionsMock.DefaultStockSymbol = "MSFT";
-            _optionsMock.Setup(x => x.Value).Returns(tradingOptionsMock);
-
-            Dictionary<string, object>? mockResultCompany = new Dictionary<string, object>()
-            {
-                {"name","Microsoft Corp" },
-                {"ticker","MSFT" }
-            };
-            _finnhubServiceMock.Setup(x => x.GetCompanyProfile(It.IsAny<string>())).ReturnsAsync(mockResultCompany);
-            Dictionary<string, object> mockResultStock = new Dictionary<string, object>()
-            {
-                {"c",123.2 }
-            };
-            _finnhubServiceMock.Setup(x => x.GetStockPriceQuote(It.IsAny<string>())).ReturnsAsync(mockResultStock);
-
-            TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
-
-
-            IActionResult result = await controller.Index(new List<string>()
-            {
-                "Errors"
-            }, null);
-
-            ViewResult viewResult = Assert.IsType<ViewResult>(result);
-            Assert.IsAssignableFrom<StockTrade>(viewResult.ViewData.Model);
-            Assert.True(viewResult.ViewName == "Index");
-            Assert.False(viewResult.ViewData["Errors"] == null);
-        }
 
         /// <summary>
         /// No Trading options with default symbol provided
@@ -146,7 +110,7 @@ namespace ServiceTests.ControllerTests
 
             await Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
-                await controller.Index(null, null);
+                await controller.Index(null);
             });
         }
 
@@ -176,10 +140,9 @@ namespace ServiceTests.ControllerTests
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
             controller.ModelState.AddModelError("TestError", "Error");
 
-            IActionResult result = await controller.Index(null, null);
+            IActionResult result = await controller.Index(null);
 
             ViewResult viewResult = Assert.IsType<ViewResult>(result);
-            Assert.True(viewResult.Model == null);
             Assert.True(viewResult.ViewName == "Index");
             Assert.False(viewResult.ViewData["Errors"] == null);
         }
@@ -230,8 +193,6 @@ namespace ServiceTests.ControllerTests
             IActionResult result = await controller.BuyOrder(request);
             RedirectToActionResult redirectResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.True(redirectResult.ActionName == "Index");
-            Assert.True(redirectResult.RouteValues != null);
-            Assert.True(redirectResult.RouteValues.ContainsKey("Errors"));
         }
 
         #endregion
@@ -280,8 +241,6 @@ namespace ServiceTests.ControllerTests
             IActionResult result = await controller.SellOrder(request);
             RedirectToActionResult redirectResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.True(redirectResult.ActionName == "Index");
-            Assert.True(redirectResult.RouteValues != null);
-            Assert.True(redirectResult.RouteValues.ContainsKey("Errors"));
         }
 
         #endregion

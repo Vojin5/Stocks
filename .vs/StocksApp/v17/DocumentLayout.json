@@ -1,12 +1,69 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\stocksapp\\controllers\\tradecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D51F823-D350-4E28-9C4E-EF4DD361302C}|StocksApp\\StocksApp.csproj|solutionrelative:stocksapp\\controllers\\tradecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F2F0CAF-C5E6-47F8-A803-A7322472E784}|ServiceTests\\ServiceTests.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\servicetests\\unittests\\stockservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F2F0CAF-C5E6-47F8-A803-A7322472E784}|ServiceTests\\ServiceTests.csproj|solutionrelative:servicetests\\unittests\\stockservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7BC1668F-4A8C-4C29-9B31-0AB33E01FF7F}|Services\\Services.csproj|c:\\users\\vojin\\onedrive\\desktop\\.net core\\xunit,crud,tags,ef\\stocksapp\\services\\stocksservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7BC1668F-4A8C-4C29-9B31-0AB33E01FF7F}|Services\\Services.csproj|solutionrelative:services\\stocksservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TradeController.cs",
+              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Controllers\\TradeController.cs",
+              "RelativeDocumentMoniker": "StocksApp\\Controllers\\TradeController.cs",
+              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\StocksApp\\Controllers\\TradeController.cs",
+              "RelativeToolTip": "StocksApp\\Controllers\\TradeController.cs",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAgwFQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-10T10:56:09.766Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StockServiceTests.cs",
+              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\ServiceTests\\UnitTests\\StockServiceTests.cs",
+              "RelativeDocumentMoniker": "ServiceTests\\UnitTests\\StockServiceTests.cs",
+              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\ServiceTests\\UnitTests\\StockServiceTests.cs",
+              "RelativeToolTip": "ServiceTests\\UnitTests\\StockServiceTests.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-10T10:52:25.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StocksService.cs",
+              "DocumentMoniker": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\Services\\StocksService.cs",
+              "RelativeDocumentMoniker": "Services\\StocksService.cs",
+              "ToolTip": "C:\\Users\\Vojin\\OneDrive\\Desktop\\.Net Core\\xUnit,Crud,Tags,EF\\StocksApp\\Services\\StocksService.cs",
+              "RelativeToolTip": "Services\\StocksService.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-10T10:46:32.262Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
