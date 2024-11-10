@@ -48,3 +48,12 @@
         </div>
     </div>
 </div>
+<div class="error-container">
+    @if(ViewBag.Errors != null)
+    {
+        @foreach (string error in ViewBag.Errors)
+        {
+            <div class="error-item">@error</div>
+        }
+    }
+</div>

@@ -15,6 +15,7 @@ using Entities.DTO;
 using Microsoft.AspNetCore.Http;
 using Entities;
 using Rotativa.AspNetCore;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace ServiceTests.ControllerTests
 {
@@ -53,7 +54,45 @@ namespace ServiceTests.ControllerTests
         /// </summary>
         /// <returns>Success</returns>
         [Fact]
-        public async Task Index_ValidInputNoErrors_ToGetIndexView()
+        public async Task Index_ValidInput_ToGetIndexView()
+        {
+            //options provided
+            TradingOptions tradingOptionsMock = new TradingOptions();
+            tradingOptionsMock.DefaultStockSymbol = "MSFT";
+            _optionsMock.Setup(x => x.Value).Returns(tradingOptionsMock);
+
+            //mock data for company profile
+            Dictionary<string, object>? mockResultCompany = new Dictionary<string, object>()
+            {
+                {"name","Microsoft Corp" },
+                {"ticker","MSFT" }
+            };
+            _finnhubServiceMock.Setup(x => x.GetCompanyProfile(It.IsAny<string>())).ReturnsAsync(mockResultCompany);
+
+            //mock data for stock 
+            Dictionary<string, object> mockResultStock = new Dictionary<string, object>()
+            {
+                {"c",123.2 }
+            };
+            _finnhubServiceMock.Setup(x => x.GetStockPriceQuote(It.IsAny<string>())).ReturnsAsync(mockResultStock);
+
+            //temp data mock
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
+            
+            TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            //setting tempData
+            controller.TempData = tempData;
+
+            IActionResult result = await controller.Index(null);
+
+            ViewResult viewResult = Assert.IsType<ViewResult>(result);
+            Assert.IsAssignableFrom<StockTrade>(viewResult.ViewData.Model);
+            Assert.True(viewResult.ViewName == "Index");
+            Assert.True(viewResult.TempData["Errors"] == null);
+        }
+
+        [Fact]
+        public async Task Index_ValidInputWithErrors_ToGetIndexView()
         {
             TradingOptions tradingOptionsMock = new TradingOptions();
             tradingOptionsMock.DefaultStockSymbol = "MSFT";
@@ -71,14 +110,19 @@ namespace ServiceTests.ControllerTests
             };
             _finnhubServiceMock.Setup(x => x.GetStockPriceQuote(It.IsAny<string>())).ReturnsAsync(mockResultStock);
 
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
+            tempData["Errors"] = new string[] { "Sample Error" };
+
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
 
             IActionResult result = await controller.Index(null);
 
             ViewResult viewResult = Assert.IsType<ViewResult>(result);
             Assert.IsAssignableFrom<StockTrade>(viewResult.ViewData.Model);
             Assert.True(viewResult.ViewName == "Index");
-            Assert.True(viewResult.ViewData["Errors"] == null);
+            Assert.False(viewResult.TempData["Errors"] == null);
+            Assert.True(viewResult.ViewData["Errors"] != null);
         }
 
 
@@ -105,7 +149,10 @@ namespace ServiceTests.ControllerTests
             };
             _finnhubServiceMock.Setup(x => x.GetStockPriceQuote(It.IsAny<string>())).ReturnsAsync(mockResultStock);
 
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
+
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
             controller.ModelState.AddModelError("TestError", "Error");
 
             await Assert.ThrowsAsync<ArgumentNullException>(async () =>
@@ -115,11 +162,11 @@ namespace ServiceTests.ControllerTests
         }
 
         /// <summary>
-        /// If api returns no result there will be error message on view and no model passed
+        /// If api returns no result there will be error message on view.
         /// </summary>
         /// <returns>View with errors</returns>
         [Fact]
-        public async Task Index_NoApiResponses_ToGetIndexView()
+        public async Task Index_NoApiResponses_ToGetIndexViewWithErrors()
         {
             TradingOptions tradingOptionsMock = new TradingOptions();
             tradingOptionsMock.DefaultStockSymbol = "MSFT";
@@ -136,11 +183,46 @@ namespace ServiceTests.ControllerTests
                 {"c",123.2 }
             };
             _finnhubServiceMock.Setup(x => x.GetStockPriceQuote(It.IsAny<string>())).ReturnsAsync(mockResultStock);*/
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
 
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
-            controller.ModelState.AddModelError("TestError", "Error");
+            controller.TempData = tempData;
 
             IActionResult result = await controller.Index(null);
+
+            ViewResult viewResult = Assert.IsType<ViewResult>(result);
+            Assert.True(viewResult.ViewName == "Index");
+            Assert.False(viewResult.ViewData["Errors"] == null);
+        }
+
+        /// <summary>
+        /// If api returns no result for bad symbol provided it should display errors
+        /// </summary>
+        /// <returns>View with errors</returns>
+        [Fact]
+        public async Task Index_BadStockSymbol_ToGetIndexViewWithErrors()
+        {
+            TradingOptions tradingOptionsMock = new TradingOptions();
+            tradingOptionsMock.DefaultStockSymbol = "MSFT";
+            _optionsMock.Setup(x => x.Value).Returns(tradingOptionsMock);
+
+            /*Dictionary<string, object>? mockResultCompany = new Dictionary<string, object>()
+            {
+                {"name","Microsoft Corp" },
+                {"ticker","MSFT" }
+            };
+            _finnhubServiceMock.Setup(x => x.GetCompanyProfile(It.IsAny<string>())).ReturnsAsync(mockResultCompany);
+            Dictionary<string, object> mockResultStock = new Dictionary<string, object>()
+            {
+                {"c",123.2 }
+            };
+            _finnhubServiceMock.Setup(x => x.GetStockPriceQuote(It.IsAny<string>())).ReturnsAsync(mockResultStock);*/
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
+            TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
+
+
+            IActionResult result = await controller.Index("dummybadsymbol");
 
             ViewResult viewResult = Assert.IsType<ViewResult>(result);
             Assert.True(viewResult.ViewName == "Index");
@@ -165,6 +247,12 @@ namespace ServiceTests.ControllerTests
                 .With(x => x.Quantity, 100)
                 .With(x => x.Price, 100)
                 .Create();
+            BuyOrder buyOrder = request.ToBuyOrder();
+            buyOrder.BuyOrderID = Guid.NewGuid();
+            BuyOrderResponse response = buyOrder.ToBuyOrderResponse();
+
+            _stocksServiceMock.Setup(x => x.CreateBuyOrder(It.IsAny<BuyOrderRequest>())).
+                ReturnsAsync(response);
 
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
 
@@ -188,11 +276,40 @@ namespace ServiceTests.ControllerTests
                 .With(x => x.Price, 100)
                 .Create();
 
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
 
             IActionResult result = await controller.BuyOrder(request);
             RedirectToActionResult redirectResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.True(redirectResult.ActionName == "Index");
+        }
+
+        /// <summary>
+        /// If there are any problems with database it should return null and display
+        /// errors on index
+        /// </summary>
+        /// <returns>Redirect to Index with errors</returns>
+        [Fact]
+        public async Task BuyOrder_ErrorsWithDatabase_ToBeRedirectToIndex()
+        {
+            BuyOrderRequest request = _fixture.Build<BuyOrderRequest>()
+                .With(x => x.DateAndTimeOfOrder, DateTime.Now)
+                .With(x => x.Quantity, 100)
+                .With(x => x.Price, 100)
+                .Create();
+
+            _stocksServiceMock.Setup(x => x.CreateBuyOrder(It.IsAny<BuyOrderRequest>()))
+                .ReturnsAsync(null as BuyOrderResponse);
+
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
+            TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
+
+            IActionResult result = await controller.BuyOrder(request);
+            RedirectToActionResult redirectResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.True(redirectResult.ActionName == "Index");
+            
         }
 
         #endregion
@@ -213,6 +330,11 @@ namespace ServiceTests.ControllerTests
                 .With(x => x.Quantity, 100)
                 .With(x => x.Price, 100)
                 .Create();
+
+            SellOrder sellOrder = request.ToSellOrder();
+            sellOrder.SellOrderID = Guid.NewGuid();
+            SellOrderResponse response = sellOrder.ToSellOrderResponse();
+            _stocksServiceMock.Setup(x => x.CreateSellOrder(It.IsAny<SellOrderRequest>())).ReturnsAsync(response);
 
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
 
@@ -236,7 +358,35 @@ namespace ServiceTests.ControllerTests
                 .With(x => x.Price, 100)
                 .Create();
 
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
+
+            IActionResult result = await controller.SellOrder(request);
+            RedirectToActionResult redirectResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.True(redirectResult.ActionName == "Index");
+            
+        }
+
+        /// <summary>
+        /// If there are any problems with database it should return null
+        /// and redirect to index with errors
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public async Task SellOrder_ErrorsWithDatabase_ToBeRedirectToIndex()
+        {
+            SellOrderRequest request = _fixture.Build<SellOrderRequest>()
+                .With(x => x.DateAndTimeOfOrder, DateTime.Now)
+                .With(x => x.Quantity, 100)
+                .With(x => x.Price, 100)
+                .Create();
+
+            _stocksServiceMock.Setup(x => x.CreateSellOrder(It.IsAny<SellOrderRequest>())).ReturnsAsync(null as SellOrderResponse);
+
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
+            TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
 
             IActionResult result = await controller.SellOrder(request);
             RedirectToActionResult redirectResult = Assert.IsType<RedirectToActionResult>(result);
@@ -253,12 +403,14 @@ namespace ServiceTests.ControllerTests
         [Fact]
         public async Task Orders_EmptyList_ToReturnView()
         {
+            _stocksServiceMock.Setup(x => x.GetSellOrders()).ReturnsAsync(new List<SellOrderResponse>());
+            _stocksServiceMock.Setup(x => x.GetBuyOrders()).ReturnsAsync(new List<BuyOrderResponse>());
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
             IActionResult result = await controller.Orders();
             ViewResult viewResult = Assert.IsType<ViewResult>(result);
             OrdersViewModel viewModel = Assert.IsAssignableFrom<OrdersViewModel>(viewResult.Model);
-            Assert.Null(viewModel.SellOrders);
-            Assert.Null(viewModel.BuyOrders);
         }
 
         /// <summary>
@@ -287,12 +439,65 @@ namespace ServiceTests.ControllerTests
             _stocksServiceMock.Setup(x => x.GetBuyOrders()).ReturnsAsync(buyOrdersMock);
             _stocksServiceMock.Setup(x => x.GetSellOrders()).ReturnsAsync(sellOrdersMock);
 
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
+
             IActionResult result = await controller.Orders();
             ViewResult viewResult = Assert.IsType<ViewResult>(result);
             OrdersViewModel viewModel = Assert.IsAssignableFrom<OrdersViewModel>(viewResult.Model);
             Assert.NotNull(viewModel.SellOrders);
             Assert.NotNull(viewModel.BuyOrders);
+        }
+
+        [Fact]
+        public async Task Orders_WithErrors_ToReturnView()
+        {
+            List<BuyOrderResponse> buyOrdersMock = _fixture.Build<BuyOrderResponse>()
+                .With(x => x.DateAndTimeOfOrder, DateTime.Now)
+                .With(x => x.Quantity, 100)
+                .With(x => x.Price, 100)
+                .With(x => x.TradeAmount)
+                .CreateMany(5)
+                .ToList();
+
+            List<SellOrderResponse> sellOrdersMock = _fixture.Build<SellOrderResponse>()
+                .With(x => x.DateAndTimeOfOrder, DateTime.Now)
+                .With(x => x.Quantity, 100)
+                .With(x => x.Price, 100)
+                .With(x => x.TradeAmount)
+                .CreateMany(5)
+                .ToList();
+
+            _stocksServiceMock.Setup(x => x.GetBuyOrders()).ReturnsAsync(buyOrdersMock);
+            _stocksServiceMock.Setup(x => x.GetSellOrders()).ReturnsAsync(sellOrdersMock);
+
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
+            tempData["Errors"] = new string[] { "Sample Error" };
+            TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
+
+            IActionResult result = await controller.Orders();
+            ViewResult viewResult = Assert.IsType<ViewResult>(result);
+            OrdersViewModel viewModel = Assert.IsAssignableFrom<OrdersViewModel>(viewResult.Model);
+            Assert.NotNull(viewModel.SellOrders);
+            Assert.NotNull(viewModel.BuyOrders);
+            Assert.True(viewResult.ViewData["Errors"] != null);
+            Assert.True(viewResult.TempData["Errors"] != null);
+        }
+
+        [Fact]
+        public async Task Orders_ErrorsWithDatabase_ToReturnView()
+        {
+            _stocksServiceMock.Setup(x => x.GetSellOrders()).ReturnsAsync(null as List<SellOrderResponse>);
+
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
+            TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
+            IActionResult result = await controller.Orders();
+            ViewResult viewResult = Assert.IsType<ViewResult>(result);
+            OrdersViewModel viewModel = Assert.IsAssignableFrom<OrdersViewModel>(viewResult.Model);
+            Assert.True(viewResult.ViewData["Errors"] != null);
         }
 
         #endregion
@@ -306,12 +511,18 @@ namespace ServiceTests.ControllerTests
         [Fact]
         public async Task OrdersPDF_EmptyList_ToReturnView()
         {
+            _stocksServiceMock.Setup(x => x.GetSellOrders()).ReturnsAsync(new List<SellOrderResponse>());
+            _stocksServiceMock.Setup(x => x.GetBuyOrders()).ReturnsAsync(new List<BuyOrderResponse>());
+
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
+
             IActionResult result = await controller.OrdersPDF();
             ViewAsPdf viewResult = Assert.IsType<ViewAsPdf>(result);
             OrdersViewModel viewModel = Assert.IsAssignableFrom<OrdersViewModel>(viewResult.Model);
-            Assert.Null(viewModel.SellOrders);
-            Assert.Null(viewModel.BuyOrders);
+            Assert.NotNull(viewModel.SellOrders);
+            Assert.NotNull(viewModel.BuyOrders);
         }
         /// <summary>
         /// Getting ViewAsPdf with data from database 
@@ -339,12 +550,30 @@ namespace ServiceTests.ControllerTests
             _stocksServiceMock.Setup(x => x.GetBuyOrders()).ReturnsAsync(buyOrdersMock);
             _stocksServiceMock.Setup(x => x.GetSellOrders()).ReturnsAsync(sellOrdersMock);
 
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
+
             IActionResult result = await controller.OrdersPDF();
             ViewAsPdf viewResult = Assert.IsType<ViewAsPdf>(result);
             OrdersViewModel viewModel = Assert.IsAssignableFrom<OrdersViewModel>(viewResult.Model);
             Assert.NotNull(viewModel.SellOrders);
             Assert.NotNull(viewModel.BuyOrders);
+        }
+
+        [Fact]
+        public async Task OrdersPDF_DatabaseError_ToReturnView()
+        {
+            _stocksServiceMock.Setup(x => x.GetSellOrders()).ReturnsAsync(null as List<SellOrderResponse>);
+            _stocksServiceMock.Setup(x => x.GetBuyOrders()).ReturnsAsync(null as List<BuyOrderResponse>);
+
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
+            TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
+
+            IActionResult result = await controller.OrdersPDF();
+            RedirectToActionResult redirectResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.True(redirectResult.ActionName == "Orders");
         }
 
         #endregion

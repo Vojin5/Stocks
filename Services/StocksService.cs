@@ -21,40 +21,55 @@ namespace Services
             _stocksRepository = stocksRepository;
         }
 
-        public async Task<BuyOrderResponse> CreateBuyOrder(BuyOrderRequest? request)
+        public async Task<BuyOrderResponse?> CreateBuyOrder(BuyOrderRequest? request)
         {
             if(request == null)
-                throw new ArgumentNullException(nameof(request));
+                return null;
 
-            ModelValidator.Validate(request);
+            bool isValid = ModelValidator.IsValid(request);
+            if(!isValid)
+                return null;
+
             BuyOrder order = request.ToBuyOrder();
             order.BuyOrderID = new Guid();
-            BuyOrder responseCreate = await _stocksRepository.CreateBuyOrder(order);
+            BuyOrder? responseCreate = await _stocksRepository.CreateBuyOrder(order);
+            if (responseCreate == null)
+                return null;
             BuyOrderResponse response = responseCreate.ToBuyOrderResponse();
             return response;
         }
 
-        public async Task<SellOrderResponse> CreateSellOrder(SellOrderRequest? request)
+        public async Task<SellOrderResponse?> CreateSellOrder(SellOrderRequest? request)
         {
-            if(request== null)
-                throw new ArgumentNullException(nameof(request));
+            if (request == null)
+                return null;
 
-            ModelValidator.Validate(request);
+            bool isValid = ModelValidator.IsValid(request);
+            if(!isValid)
+                return null;
             SellOrder order = request.ToSellOrder();
             order.SellOrderID = Guid.NewGuid();
-            SellOrder responseCreate = await _stocksRepository.CreateSellOrder(order);
+            SellOrder? responseCreate = await _stocksRepository.CreateSellOrder(order);
+            if(responseCreate == null)
+                return null;
             SellOrderResponse response = responseCreate.ToSellOrderResponse();
             return response;
         }
 
-        public async Task<List<BuyOrderResponse>> GetBuyOrders()
+        public async Task<List<BuyOrderResponse>?> GetBuyOrders()
         {
-            return (await _stocksRepository.GetBuyOrders()).Select(x => x.ToBuyOrderResponse()).ToList();
+            List<BuyOrder>? buyOrders = await _stocksRepository.GetBuyOrders();
+            if(buyOrders == null)
+                return null;
+            return buyOrders.Select(x => x.ToBuyOrderResponse()).ToList();
         }
 
-        public async Task<List<SellOrderResponse>> GetSellOrders()
+        public async Task<List<SellOrderResponse>?> GetSellOrders()
         {
-            return (await _stocksRepository.GetSellOrders()).Select(x => x.ToSellOrderResponse()).ToList();
+            List<SellOrder>? sellOrders = await _stocksRepository.GetSellOrders();
+            if(sellOrders == null)
+                return null;
+            return sellOrders.Select(x => x.ToSellOrderResponse()).ToList();
         }
     }
 }

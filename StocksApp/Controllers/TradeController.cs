@@ -2,6 +2,7 @@
 using Entities.DTO;
 using Entities.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Rotativa.AspNetCore;
@@ -31,18 +32,30 @@ namespace StocksApp.Controllers
         [Route("/")]
         public async Task<IActionResult> Index(string? stockSymbol)
         {
+            //Errors from other methods
+            string[]? errors = (string[]?) TempData["Errors"];
+            if(errors != null)
+            {
+                ViewBag.Errors = errors;
+            }
+
+            //trading options
             if(_tradingOptions == null || _tradingOptions.DefaultStockSymbol == null)
                 throw new ArgumentNullException(nameof(TradingOptions));
 
+            //provided stock symbol or default
             if (stockSymbol.IsNullOrEmpty() || stockSymbol == null)
                 stockSymbol = _tradingOptions.DefaultStockSymbol;
 
+            //company data based on provided stock symbol
             Dictionary<string, object>? companyProfileDictionary =
                await _finnhubService.GetCompanyProfile(stockSymbol);
 
+            //stock data based on stock symbol
             Dictionary<string, object>? stockProfileDictionary =
                 await _finnhubService.GetStockPriceQuote(stockSymbol);
 
+            //internal api errors
             if (companyProfileDictionary == null || stockProfileDictionary == null)
             {
                 ViewBag.Errors = new List<string>() { "There was an error while fetching stocks data" };
@@ -73,12 +86,19 @@ namespace StocksApp.Controllers
             if (!isValid)
             {
                 List<string?> errors = validationResults.Select(x =>x.ErrorMessage).ToList();
-                ViewBag.Errors = errors;
+                TempData["Errors"] = errors;
                 return RedirectToAction("Index");
             }
             else
             {
-                await _stocksService.CreateBuyOrder(buyOrderRequest);
+                BuyOrderResponse? response = await _stocksService.CreateBuyOrder(buyOrderRequest);
+                if (response == null)
+                {
+                    List<string?> errors = 
+                        validationResults.Select(x => x.ErrorMessage).ToList();
+                    TempData["Errors"] = errors;
+                    return RedirectToAction("Index");
+                }
                 return RedirectToAction("Orders", "Trade");
             }
         }
@@ -93,16 +113,21 @@ namespace StocksApp.Controllers
             var validationResults = new List<ValidationResult>();
             bool isValid = Validator.TryValidateObject(sellOrderRequest, validationContext, validationResults, true);
 
-            if (!isValid)
+            if (isValid)
             {
-
                 List<string?> errors = validationResults.Select(x => x.ErrorMessage).ToList();
-                ViewBag.Errors = errors;
+                TempData["Errors"] = errors;
                 return RedirectToAction("Index");
             }
             else
             {
-                await _stocksService.CreateSellOrder(sellOrderRequest);
+                SellOrderResponse? response = await _stocksService.CreateSellOrder(sellOrderRequest);
+                if(response == null)
+                {
+                    List<string> errors = new List<string> { "There was an error with create request please try again" };
+                    TempData["Errors"] = errors;
+                    return RedirectToAction("Index");
+                }
                 return RedirectToAction("Orders", "Trade");
             }
         }
@@ -111,8 +136,22 @@ namespace StocksApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Orders()
         {
-            List<BuyOrderResponse> buyOrders = await _stocksService.GetBuyOrders();
-            List<SellOrderResponse> sellOrders = await _stocksService.GetSellOrders();
+            string[]? errors = (string[]?) TempData["Errors"];
+            if (errors != null)
+                ViewData["Errors"] = errors;
+
+            List<BuyOrderResponse>? buyOrders = await _stocksService.GetBuyOrders();
+            List<SellOrderResponse>? sellOrders = await _stocksService.GetSellOrders();
+            if (buyOrders == null || sellOrders == null)
+            {
+                ViewBag.Errors = "There were problems with getting orders, please try again";
+                OrdersViewModel emptyOrders = new OrdersViewModel()
+                {
+                    BuyOrders = new List<BuyOrderResponse>(),
+                    SellOrders = new List<SellOrderResponse>()
+                };
+                return View(emptyOrders);
+            }
             OrdersViewModel orders = new OrdersViewModel()
             {
                 BuyOrders = buyOrders,
@@ -125,8 +164,14 @@ namespace StocksApp.Controllers
         [HttpGet]
         public async Task<IActionResult> OrdersPDF()
         {
-            List<BuyOrderResponse> buyOrders = await _stocksService.GetBuyOrders();
-            List<SellOrderResponse> sellOrders = await _stocksService.GetSellOrders();
+            List<BuyOrderResponse>? buyOrders = await _stocksService.GetBuyOrders();
+            List<SellOrderResponse>? sellOrders = await _stocksService.GetSellOrders();
+            if(buyOrders == null || sellOrders == null)
+            {
+                List<string> errors = new List<string>() { "Error while getting orders from database, please try again later(PDF)" };
+                TempData["Errors"] = errors;
+                return RedirectToAction("Orders");
+            }
             OrdersViewModel orders = new OrdersViewModel()
             {
                 BuyOrders = buyOrders,
