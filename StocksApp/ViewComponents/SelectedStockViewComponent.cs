@@ -8,7 +8,7 @@ namespace StocksApp.ViewComponents
     {
         private readonly IFinnhubService _finnhubService;
 
-        public SelectedStockViewComponent(IConfiguration configuration, IFinnhubService finnhubService)
+        public SelectedStockViewComponent(IFinnhubService finnhubService)
         {
             _finnhubService = finnhubService;
         }
@@ -19,15 +19,31 @@ namespace StocksApp.ViewComponents
             Dictionary<string,object>? stockInfo = await _finnhubService.GetStockPriceQuote(stockSymbol);
 
             if (company == null || stockInfo == null)
-                throw new Exception("Error while handling selected stock request");
+            {
+                Console.WriteLine("Error while handling selected stock request");
+                ViewBag.Errors = "Error while handling selected stocks request";
+                return View(null as SelectedStockViewComponent);
+            }
             if (!company.ContainsKey("logo") || !company.ContainsKey("name") ||
                 !company.ContainsKey("finnhubIndustry") || !company.ContainsKey("exchange"))
-                throw new Exception("Error while getting company data");
+            {
+                Console.WriteLine("Error while getting company data");
+                ViewBag.Errors = "Error while handling selected stocks request";
+                return View(null as SelectedStockViewComponent);
+            }
             if (!stockInfo.ContainsKey("c"))
-                throw new Exception("Error while getting current price of stock");
+            {
+                Console.WriteLine("Error while getting current price of stock");
+                ViewBag.Errors = "Error while handling selected stocks request";
+                return View(null as SelectedStockViewComponent);
+            }
             double price;
             if (!double.TryParse(stockInfo["c"].ToString(), out price))
-                throw new Exception("Cannot convert current price to double");
+            {
+                Console.WriteLine("Cannot convert current price to double");
+                ViewBag.Errors = "Error while handling selected stocks request";
+                return View(null as SelectedStockViewComponent);
+            }
 
             SelectedStockViewModel viewModel = new SelectedStockViewModel()
             {
