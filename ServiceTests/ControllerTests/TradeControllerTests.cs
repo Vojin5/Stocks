@@ -54,7 +54,7 @@ namespace ServiceTests.ControllerTests
         /// </summary>
         /// <returns>Success</returns>
         [Fact]
-        public async Task Index_ValidInput_ToGetIndexView()
+        public async Task Index_ValidInputNoErrors_ToGetIndexView()
         {
             //options provided
             TradingOptions tradingOptionsMock = new TradingOptions();
@@ -83,7 +83,7 @@ namespace ServiceTests.ControllerTests
             //setting tempData
             controller.TempData = tempData;
 
-            IActionResult result = await controller.Index(null);
+            IActionResult result = await controller.Index("AAPL");
 
             ViewResult viewResult = Assert.IsType<ViewResult>(result);
             Assert.IsAssignableFrom<StockTrade>(viewResult.ViewData.Model);
@@ -153,7 +153,6 @@ namespace ServiceTests.ControllerTests
 
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
             controller.TempData = tempData;
-            controller.ModelState.AddModelError("TestError", "Error");
 
             await Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
@@ -260,7 +259,6 @@ namespace ServiceTests.ControllerTests
             RedirectToActionResult redirectResult = Assert.IsType<RedirectToActionResult>(result);
             Assert.True(redirectResult.ActionName == "Orders"
                 && redirectResult.ControllerName == "Trade");
-
         }
 
         /// <summary>
@@ -336,7 +334,9 @@ namespace ServiceTests.ControllerTests
             SellOrderResponse response = sellOrder.ToSellOrderResponse();
             _stocksServiceMock.Setup(x => x.CreateSellOrder(It.IsAny<SellOrderRequest>())).ReturnsAsync(response);
 
+            var tempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
             TradeController controller = new TradeController(_tradingOptions, _finnhubService, _stocksService);
+            controller.TempData = tempData;
 
             IActionResult result = await controller.SellOrder(request);
             RedirectToActionResult redirectResult = Assert.IsType<RedirectToActionResult>(result);

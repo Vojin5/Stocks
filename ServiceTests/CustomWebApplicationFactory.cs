@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Rotativa.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -35,7 +36,61 @@ namespace ServiceTests
                 {
                     options.UseInMemoryDatabase("TestDatabase");
                 });
+                var serviceProvider = services.BuildServiceProvider();
+                using(var scope = serviceProvider.CreateScope())
+                {
+                    var dbContext = scope.ServiceProvider.GetService<StocksDbContext>();
+                    if(dbContext != null)
+                        SeedDatabase(dbContext);
+                }
+
+                var basePath = Directory.GetCurrentDirectory();
+                var solutionPath = Path.Combine(basePath, @"../../../../");
+                var projectPath = Path.Combine(solutionPath, "./StocksApp");
+                var wwwrootPath = Path.Combine(projectPath, "wwwroot");
+                RotativaConfiguration.Setup(wwwrootPath, wkhtmltopdfRelativePath: "Rotativa");
             });
+        }
+
+        private void SeedDatabase(StocksDbContext context)
+        {
+            if (!context.BuyOrders.Any())
+            {
+                context.BuyOrders.Add(new BuyOrder()
+                {
+                    StockSymbol = "AAPL",
+                    StockName = "Apple",
+                    DateAndTimeOfOrder = DateTime.Now,
+                    Quantity = 100,
+                    Price = 100
+                });
+                context.BuyOrders.Add(new BuyOrder()
+                {
+                    StockSymbol = "MSFT",
+                    StockName = "Microsoft",
+                    DateAndTimeOfOrder = DateTime.Now,
+                    Quantity = 100,
+                    Price = 100
+                });
+
+                context.SellOrders.Add(new SellOrder()
+                {
+                    StockSymbol = "AAPL",
+                    StockName = "Apple",
+                    DateAndTimeOfOrder = DateTime.Now,
+                    Quantity = 50,
+                    Price = 100
+                });
+                context.SellOrders.Add(new SellOrder()
+                {
+                    StockSymbol = "MSFT",
+                    StockName = "Microsoft",
+                    DateAndTimeOfOrder = DateTime.Now,
+                    Quantity = 50,
+                    Price = 100
+                });
+                context.SaveChanges();
+            }
         }
     }
 }

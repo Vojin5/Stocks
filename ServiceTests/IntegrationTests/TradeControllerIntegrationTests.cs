@@ -1,11 +1,15 @@
 ﻿using Entities;
+using Entities.DTO;
 using Fizzler.Systems.HtmlAgilityPack;
 using HtmlAgilityPack;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Rotativa.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +24,7 @@ namespace ServiceTests.IntegrationTests
         {
             _customWebApplicationFactory = webFactory;
             _httpClient = webFactory.CreateClient();
+
         }
 
 
@@ -72,6 +77,10 @@ namespace ServiceTests.IntegrationTests
             Assert.True(stockSymbol.InnerText == "AAPL");
         }
 
+        /// <summary>
+        /// When supplied with bad stock name should return view with errors and empty model
+        /// </summary>
+        /// <returns>View with Errors</returns>
         [Fact]
         public async Task Index_WithBadStock()
         {
@@ -86,8 +95,163 @@ namespace ServiceTests.IntegrationTests
             HtmlNode document = htmlDocument.DocumentNode;
 
             Assert.NotNull(document.QuerySelector(".error-container"));
+            Assert.NotNull(document.QuerySelector(".error-item"));
         }
 
+        #endregion
+
+        #region BuyStock
+
+        /// <summary>
+        /// Succesful call to add new buyStocks with redirect to orders
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public async Task BuyStocks_RedirectToOrders_Success()
+        {
+
+            var formData = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("StockSymbol", "AAPL"),
+                new KeyValuePair<string, string>("StockName", "Apple"),
+                new KeyValuePair<string, string>("DateAndTimeOfOrder", DateTime.Now.ToString("o")),
+                new KeyValuePair<string, string>("Quantity", "100"),
+                new KeyValuePair<string, string>("Price", "100")
+            };
+            var content = new FormUrlEncodedContent(formData);
+
+            HttpResponseMessage response = await _httpClient.PostAsync("/Trade/buyOrder", content);
+
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(responseBody);
+            HtmlNode document = htmlDocument.DocumentNode;
+
+            Assert.True(document.QuerySelector("title").InnerText == "Orders");
+            Assert.True(document.QuerySelector(".error-item") == null);
+        }
+
+        /// <summary>
+        /// when supplied with some validation errors it returns index with error list
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public async Task BuyStocks_RedirectToIndexWithErrors_IndexWithErrors()
+        {
+
+            var formData = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("StockSymbol", "AAPL"),
+                new KeyValuePair<string, string>("StockName", "Apple"),
+                new KeyValuePair<string, string>("DateAndTimeOfOrder", DateTime.Now.ToString("o")),
+                new KeyValuePair<string, string>("Quantity", "10000001"),
+                new KeyValuePair<string, string>("Price", "100")
+            };
+            var content = new FormUrlEncodedContent(formData);
+
+            HttpResponseMessage response = await _httpClient.PostAsync("/Trade/buyOrder", content);
+
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(responseBody);
+            HtmlNode document = htmlDocument.DocumentNode;
+
+            Assert.True(document.QuerySelector("title").InnerText == "Stocks");
+            Assert.True(document.QuerySelector(".error-item") != null);
+        }
+
+        #endregion
+
+        #region SellStock
+
+        /// <summary>
+        /// Succesful call to add new buyStocks with redirect to orders
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public async Task SellStocks_RedirectToOrders_Success()
+        {
+            var formData = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("StockSymbol", "AAPL"),
+                new KeyValuePair<string, string>("StockName", "Apple"),
+                new KeyValuePair<string, string>("DateAndTimeOfOrder", DateTime.Now.ToString("o")),
+                new KeyValuePair<string, string>("Quantity", "100"),
+                new KeyValuePair<string, string>("Price", "100")
+            };
+            var content = new FormUrlEncodedContent(formData);
+
+            HttpResponseMessage response = await _httpClient.PostAsync("/Trade/sellOrder", content);
+
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(responseBody);
+            HtmlNode document = htmlDocument.DocumentNode;
+
+            Assert.True(document.QuerySelector("title").InnerText == "Orders");
+            Assert.True(document.QuerySelector(".error-item") == null);
+        }
+
+        [Fact]
+        public async Task SellStocks_RedirectToIndexWithErrors_IndexWithErrors()
+        {
+            var formData = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("StockSymbol", "AAPL"),
+                new KeyValuePair<string, string>("StockName", "Apple"),
+                new KeyValuePair<string, string>("DateAndTimeOfOrder", DateTime.Now.ToString("o")),
+                new KeyValuePair<string, string>("Quantity", "10000001"),
+                new KeyValuePair<string, string>("Price", "100")
+            };
+            var content = new FormUrlEncodedContent(formData);
+
+            HttpResponseMessage response = await _httpClient.PostAsync("/Trade/sellOrder", content);
+
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(responseBody);
+            HtmlNode document = htmlDocument.DocumentNode;
+
+            Assert.True(document.QuerySelector("title").InnerText == "Stocks");
+            Assert.True(document.QuerySelector(".error-item") != null);
+        }
+
+        #endregion
+
+        #region Orders
+
+        [Fact]
+        public async Task Orders_NonEmptyLists()
+        {
+            var response = await _httpClient.GetAsync("/Trade/orders");
+
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(responseBody);
+            HtmlNode document = htmlDocument.DocumentNode;
+
+            Assert.True(document.QuerySelectorAll(".buyOrders-container .order").Count() != 0);
+            Assert.True(document.QuerySelectorAll(".sellOrders-container .order").Count() != 0);
+        }
+
+
+        #endregion
+
+        #region OrdersPDF
+
+        [Fact]
+        public async Task OrdersPDF_Get()
+        {
+            HttpResponseMessage response = await _httpClient.GetAsync("/Trade/OrdersPDF");
+            Assert.True(response.IsSuccessStatusCode);
+
+            Assert.Contains("application/pdf", response.Content.Headers.ContentType?.ToString());
+        }
 
         #endregion
     }

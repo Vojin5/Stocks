@@ -113,7 +113,7 @@ namespace StocksApp.Controllers
             var validationResults = new List<ValidationResult>();
             bool isValid = Validator.TryValidateObject(sellOrderRequest, validationContext, validationResults, true);
 
-            if (isValid)
+            if (!isValid)
             {
                 List<string?> errors = validationResults.Select(x => x.ErrorMessage).ToList();
                 TempData["Errors"] = errors;
