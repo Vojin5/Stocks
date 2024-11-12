@@ -18,11 +18,9 @@ namespace ServiceTests.IntegrationTests
     public class TradeControllerIntegrationTests : IClassFixture<CustomWebApplicationFactory>
     {
         private readonly HttpClient _httpClient;
-        private readonly CustomWebApplicationFactory _customWebApplicationFactory;
-
+        
         public TradeControllerIntegrationTests(CustomWebApplicationFactory webFactory)
         {
-            _customWebApplicationFactory = webFactory;
             _httpClient = webFactory.CreateClient();
 
         }
