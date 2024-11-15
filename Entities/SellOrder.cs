@@ -27,5 +27,10 @@ namespace Entities
 
         [Range(1, 10000)]
         public double Price { get; set; }
+
+        public override string ToString()
+        {
+            return $"Buy Order ID : {SellOrderID}, Stock Symbol : {StockSymbol}, Stock Name : {StockName}, Date and time of Order : {DateAndTimeOfOrder}, Quantity : {Quantity}, Price : {Price}";
+        }
     }
 }

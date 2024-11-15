@@ -18,30 +18,40 @@ namespace StocksApp.Controllers
         private readonly TradingOptions _tradingOptions;
         private readonly IFinnhubService _finnhubService;
         private readonly IStocksService _stocksService;
+        private readonly ILogger<TradeController> _logger;
 
         public TradeController(IOptions<TradingOptions> tradingOptions,
             IFinnhubService finnhubService,
-            IStocksService stocksService)
+            IStocksService stocksService,
+            ILogger<TradeController> logger)
         {
             _tradingOptions = tradingOptions.Value;
             _finnhubService = finnhubService;
             _stocksService = stocksService;
+            _logger = logger;
         }
 
         [Route("index/{stockSymbol?}")]
         [Route("/")]
         public async Task<IActionResult> Index(string? stockSymbol)
         {
+            _logger.LogInformation($"Trade Controller : Index with symbol : {stockSymbol}");
+            _logger.LogDebug($"Trade Controller : Index : stockSymbol argument : {stockSymbol}");
+
             //Errors from other methods
             string[]? errors = (string[]?) TempData["Errors"];
             if(errors != null)
             {
+                _logger.LogError($"Trade Controller : Index : Received Errors : {errors}");
                 ViewBag.Errors = errors;
             }
 
             //trading options
             if(_tradingOptions == null || _tradingOptions.DefaultStockSymbol == null)
+            {
+                _logger.LogCritical("Trade Controller : Critical : No trading options provided");
                 throw new ArgumentNullException(nameof(TradingOptions));
+            }
 
             //provided stock symbol or default
             if (stockSymbol.IsNullOrEmpty() || stockSymbol == null)
@@ -58,7 +68,8 @@ namespace StocksApp.Controllers
             //internal api errors
             if (companyProfileDictionary == null || stockProfileDictionary == null)
             {
-                ViewBag.Errors = new List<string>() { "There was an error while fetching stocks data" };
+                _logger.LogError("Trade Controller : Index : There were errors while fetching data");
+                ViewBag.Errors = new List<string>() { "There was an error while fetching stocks data, returning index with errors" };
                 return View("Index", new StockTrade());
             }
 
@@ -69,6 +80,9 @@ namespace StocksApp.Controllers
                 Price = Convert.ToDouble(stockProfileDictionary["c"].ToString()),
                 Quantity = _tradingOptions.DefaultOrderQuantity
             };
+
+            _logger.LogDebug($"Trade Controller : Index returns view model : {stockTrade.ToString()}");
+            _logger.LogInformation("Trade Controller : Index : returning Index View...");
             return View("Index",stockTrade);
         }
 
@@ -77,6 +91,8 @@ namespace StocksApp.Controllers
         [HttpPost]
         public async Task<IActionResult> BuyOrder(BuyOrderRequest buyOrderRequest)
         {
+            _logger.LogInformation("Trade Controller : BuyOrder");
+            _logger.LogDebug($"Trade Controller : BuyOrder : request : {buyOrderRequest}");
             buyOrderRequest.DateAndTimeOfOrder = DateTime.Now;
             ModelState.Clear();
             var validationContext = new ValidationContext(buyOrderRequest);
@@ -86,7 +102,9 @@ namespace StocksApp.Controllers
             if (!isValid)
             {
                 List<string?> errors = validationResults.Select(x =>x.ErrorMessage).ToList();
+                _logger.LogError($"Trade Controller : BuyOrder : Errors : {errors}");
                 TempData["Errors"] = errors;
+                _logger.LogInformation("Trade Controller : BuyOrder redirecting index with errors");
                 return RedirectToAction("Index");
             }
             else
@@ -94,11 +112,14 @@ namespace StocksApp.Controllers
                 BuyOrderResponse? response = await _stocksService.CreateBuyOrder(buyOrderRequest);
                 if (response == null)
                 {
+                    _logger.LogError($"Trade Controller : BuyOrder : Error : response is null, redirecting index with errors");
                     List<string?> errors = 
                         validationResults.Select(x => x.ErrorMessage).ToList();
                     TempData["Errors"] = errors;
                     return RedirectToAction("Index");
                 }
+
+                _logger.LogInformation("Trade Controller : BuyOrder : Redirecting to Orders");
                 return RedirectToAction("Orders", "Trade");
             }
         }
@@ -107,6 +128,9 @@ namespace StocksApp.Controllers
         [HttpPost]
         public async Task<IActionResult> SellOrder(SellOrderRequest sellOrderRequest)
         {
+            _logger.LogInformation("Trade Controller : SellOrder");
+            _logger.LogDebug($"Trade Controller : SellOrder : request : {sellOrderRequest}");
+
             sellOrderRequest.DateAndTimeOfOrder = DateTime.Now;
             ModelState.Clear();
             var validationContext = new ValidationContext(sellOrderRequest);
@@ -116,7 +140,9 @@ namespace StocksApp.Controllers
             if (!isValid)
             {
                 List<string?> errors = validationResults.Select(x => x.ErrorMessage).ToList();
+                _logger.LogError($"Trade Controller : SellOrder : Errors : {errors}");
                 TempData["Errors"] = errors;
+                _logger.LogInformation("Redirecting to Index with errors");
                 return RedirectToAction("Index");
             }
             else
@@ -125,9 +151,13 @@ namespace StocksApp.Controllers
                 if(response == null)
                 {
                     List<string> errors = new List<string> { "There was an error with create request please try again" };
+                    _logger.LogError($"Trade Controller : SellOrder : Errors {errors}");
                     TempData["Errors"] = errors;
+                    _logger.LogInformation("Trade Controller : SellOrder redirecting to index with errors");
                     return RedirectToAction("Index");
                 }
+
+                _logger.LogInformation("Trade Controller : SellOrder redirecting to orders");
                 return RedirectToAction("Orders", "Trade");
             }
         }
@@ -136,20 +166,27 @@ namespace StocksApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Orders()
         {
+            _logger.LogInformation("Trade Controller : Orders");
+
             string[]? errors = (string[]?) TempData["Errors"];
             if (errors != null)
+            {
+                _logger.LogError($"Trade Controller : Orders received errors : {errors}");
                 ViewData["Errors"] = errors;
+            }
 
             List<BuyOrderResponse>? buyOrders = await _stocksService.GetBuyOrders();
             List<SellOrderResponse>? sellOrders = await _stocksService.GetSellOrders();
             if (buyOrders == null || sellOrders == null)
             {
+                _logger.LogError("Trade Controller : Orders : Errors : There were problems with getting orders");
                 ViewBag.Errors = "There were problems with getting orders, please try again";
                 OrdersViewModel emptyOrders = new OrdersViewModel()
                 {
                     BuyOrders = new List<BuyOrderResponse>(),
                     SellOrders = new List<SellOrderResponse>()
                 };
+                _logger.LogInformation("Trade Controller : Orders : Returning Empty orders with errors");
                 return View(emptyOrders);
             }
             OrdersViewModel orders = new OrdersViewModel()
@@ -157,6 +194,9 @@ namespace StocksApp.Controllers
                 BuyOrders = buyOrders,
                 SellOrders = sellOrders
             };
+
+            _logger.LogDebug($"Trade Controllers : Orders : view model : {orders.ToString()}");
+            _logger.LogInformation("Trade Controllers : Orders : returning orders");
             return View(orders);
         }
 
@@ -164,11 +204,14 @@ namespace StocksApp.Controllers
         [HttpGet]
         public async Task<IActionResult> OrdersPDF()
         {
+            _logger.LogInformation("Trade Controller : OrdersPDF");
+
             List<BuyOrderResponse>? buyOrders = await _stocksService.GetBuyOrders();
             List<SellOrderResponse>? sellOrders = await _stocksService.GetSellOrders();
             if(buyOrders == null || sellOrders == null)
             {
                 List<string> errors = new List<string>() { "Error while getting orders from database, please try again later(PDF)" };
+                _logger.LogError($"Trade Controller : OrdersPDF : Errors : Errors while getting orders from database");
                 TempData["Errors"] = errors;
                 return RedirectToAction("Orders");
             }
@@ -177,6 +220,8 @@ namespace StocksApp.Controllers
                 BuyOrders = buyOrders,
                 SellOrders = sellOrders
             };
+            _logger.LogDebug($"Trade Controller : OrdersPDF : viewmodel : {orders}");
+            _logger.LogInformation($"Trade Controller : OrdersPDF returning pdf");
             return new ViewAsPdf("OrdersPDF", orders, ViewData)
             {
                 PageMargins = new Rotativa.AspNetCore.Options.Margins()

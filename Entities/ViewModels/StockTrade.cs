@@ -15,5 +15,10 @@ namespace Entities.ViewModels
 
         [Range(1, int.MaxValue)]
         public int Quantity { get; set; }
+
+        public override string ToString()
+        {
+            return $"Stock symbol : {StockSymbol}, Stock Name : {StockName}, Price : {Price}, Quantity : {Quantity}";
+        }
     }
 }

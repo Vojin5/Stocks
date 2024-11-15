@@ -12,5 +12,9 @@ namespace Entities.ViewModels
         public List<BuyOrderResponse> BuyOrders { get; set; } = new List<BuyOrderResponse>();
         public List<SellOrderResponse> SellOrders { get; set; } = new List<SellOrderResponse>();
 
+        public override string ToString()
+        {
+            return $"{BuyOrders.ToString()}  {SellOrders.ToString()}";
+        }
     }
 }

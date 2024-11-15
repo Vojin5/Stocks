@@ -41,5 +41,10 @@ namespace Entities.DTO
                 Quantity = Quantity
             };
         }
+
+        public override string ToString()
+        {
+            return $"Stock symbol : {StockSymbol}, Stock name : {StockName}, Date and time of order : {DateAndTimeOfOrder}, Price : {Price}, Quantity : {Quantity}";
+        }
     }
 }

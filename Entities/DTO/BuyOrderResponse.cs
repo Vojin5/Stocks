@@ -56,6 +56,11 @@ namespace Entities.DTO
                 TradeAmount == compareObject.TradeAmount;
         }
 
+        public override string ToString()
+        {
+            return $"Buy Order ID : {BuyOrderID}, Stock symbol : {StockSymbol}, Stock Name : {StockName}, Date and time of order : {DateAndTimeOfOrder}, Quantity : {Quantity}, Price : {Price}, Trade amount : {TradeAmount}";
+        }
+
         public override int GetHashCode()
         {
             return base.GetHashCode();

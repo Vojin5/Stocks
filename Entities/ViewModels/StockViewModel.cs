@@ -10,5 +10,10 @@ namespace Entities.ViewModels
     {
         public string? StockSymbol { get; set; }
         public string? StockName { get; set; }
+
+        public override string ToString()
+        {
+            return $"Stock symbol : {StockSymbol}, Stock Name : {StockName}";
+        }
     }
 }

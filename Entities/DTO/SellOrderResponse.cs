@@ -60,6 +60,11 @@ namespace Entities.DTO
         {
             return base.GetHashCode();
         }
+
+        public override string ToString()
+        {
+            return $"Sell Order ID : {SellOrderID}, Stock symbol : {StockSymbol}, Stock name : {StockName}, Date and time of order : {DateAndTimeOfOrder}, Quantity : {Quantity}, Price : {Price}, Trade amount : {TradeAmount}";
+        }
     }
 
     public static class SellOrderExtension
